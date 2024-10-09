@@ -43,15 +43,15 @@ about:
   license_family: BSD
   license_file: COPYRIGHT
   summary: MVAPICH, a high-performance MPI library by The Ohio State University.
-  description: 
-    MVAPICH2 is a high-performance implementation of the MPI (Message Passing Interface) standard. 
+  description: |
+    MVAPICH2 is a high-performance implementation of the MPI (Message Passing Interface) standard.
     It provides enhancements including optimization for different networking technologies.
+    
     ### Important Configuration
-    The default value for `MV2_ENABLE_AFFINITY` is typically `1` (enabled). This setting binds MPI processes 
+    The default value for `MV2_ENABLE_AFFINITY` is typically `1` (enabled). This setting binds MPI processes
     to specific CPU cores to improve performance due to cache locality and reduced context switching.
-    In some environments, particularly those using the Slurm job scheduler, this may degrade performances 
+    In some environments, particularly those using the Slurm job scheduler, this may degrade performances
     or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
-
 
 extra:
   recipe-maintainers:
