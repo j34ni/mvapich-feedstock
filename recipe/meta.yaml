@@ -53,6 +53,14 @@ about:
     In some environments, particularly those using the Slurm job scheduler, this may degrade performances
     or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
 
+    ### OFI or UCX version
+    To select the OFI version use: `conda install -c conda-forge mvapich=3.0=*_ofi`, and for the UCX version:
+    `conda install -c conda-forge mvapich=3.0=*_ucx`.
+
+    ### About the compilers
+    The necessary GNU compilers (i.e., gcc_linux-64, gfortran_linux-64 and gxx_linux-64) have to be added manually 
+    since they are not automatically installed in the Conda environment as dependencies.
+    
 extra:
   recipe-maintainers:
     - j34ni
