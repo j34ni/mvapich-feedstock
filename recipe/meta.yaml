@@ -10,7 +10,7 @@ source:
   sha256: ee076c4e672d18d6bf8dd2250e4a91fa96aac1db2c788e4572b5513d86936efb
 
 build:
-  number: 0
+  number: 1
   string: "h{{ PKG_HASH }}_{{ device_variant }}"
   skip: true  # [win or osx]
   run_exports:
