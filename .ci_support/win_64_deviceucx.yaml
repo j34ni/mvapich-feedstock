@@ -19,6 +19,6 @@ libhwloc:
 rdma_core:
 - '53'
 target_platform:
-- linux-aarch64
+- linux-64
 ucx:
 - '1.17'
