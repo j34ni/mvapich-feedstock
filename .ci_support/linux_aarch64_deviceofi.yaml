@@ -33,7 +33,7 @@ libhwloc:
 rdma_core:
 - '53'
 target_platform:
-- linux-ppc64le
+- linux-64
 ucx:
 - '1.17'
 zip_keys:
