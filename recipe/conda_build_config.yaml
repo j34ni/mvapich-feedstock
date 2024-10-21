@@ -1,7 +1,3 @@
 device:
   - ucx
   - ofi
-target_platform:
-  - linux-64
-  - linux-aarch64
-  - linux-ppc64le
