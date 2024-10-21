@@ -24,6 +24,14 @@ jobs:
         CONFIG: linux_aarch64_deviceucx
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_ppc64le_deviceofi:
+        CONFIG: linux_ppc64le_deviceofi
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_ppc64le_deviceucx:
+        CONFIG: linux_ppc64le_deviceucx
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360
   variables: {}
 
