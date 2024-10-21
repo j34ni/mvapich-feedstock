@@ -9,7 +9,7 @@ Package license: BSD-3-Clause
 
 Summary: MVAPICH, a high-performance MPI library by The Ohio State University.
 
-MVAPICH2 is a high-performance implementation of the MPI (Message Passing Interface) standard.
+MVAPICH is a high-performance implementation of the MPI (Message Passing Interface) standard.
 It provides enhancements including optimization for different networking technologies.
 
 
@@ -19,12 +19,12 @@ In some environments, particularly those using the Slurm job scheduler, this may
 or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
 
 
-To select the OFI version use: `conda install -c conda-forge mvapich=3.0=*_ofi`, and for the UCX version:
-`conda install -c conda-forge mvapich=3.0=*_ucx`.
+MVAPICH supports two high-level network APIs, namely OFI and UCX: to select the OFI version use
+`conda install conda-forge::mvapich=*=*_ofi`, and for the UCX version `conda install conda-forge::mvapich=*=*_ucx`.
 
 
-The necessary GNU compilers (i.e., gcc_linux-64, gfortran_linux-64 and gxx_linux-64) have to be added manually
-since they are not automatically installed in the Conda environment as dependencies.
+Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64`) have to
+be added manually since they are not automatically installed in the Conda environment as dependencies.
 
 
 Current build status
@@ -56,6 +56,34 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_deviceucx" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_deviceofi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_deviceofi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_deviceucx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_deviceucx" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_deviceofi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_deviceofi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_deviceucx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_deviceucx" alt="variant">
                 </a>
               </td>
             </tr>

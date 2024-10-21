@@ -26,16 +26,23 @@ requirements:
     - make
   host:
     - libhwloc
-    - rdma-core  # [linux]
     {% if device == "ucx" %}
     - ucx
+    - rdma-core  # [linux]
     {% endif %}
   run:
     - mpi 1.0.* mvapich
 
 test:
+  requires:
+    - {{ compiler('c') }}
+
   commands:
+{% if target_platform == "linux-64" %}
     - mpiexec -n 2 $PREFIX/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_latency -m 1024:1024
+{% else %}
+    - echo "Skipping tests for now"
+{% endif %}
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
