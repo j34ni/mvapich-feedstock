@@ -31,10 +31,21 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   fi
 fi
 
+# Support for ch4:ucx or ch4:ofi devices
+build_with_device=""
+if [ "$device" == "ucx" ]; then
+  echo "Build with UCX support"
+  build_with_device=" --with-device=ch4:ucx --with-ucx=$PREFIX "
+else
+  echo "Build with OFI support"
+  build_with_device=" --with-device=ch4:ofi "
+fi
+
 ./configure --prefix=$PREFIX \
-            --with-device=ch4:ofi \
+            $build_with_device \
             --with-hwloc-prefix=$PREFIX \
-            $build_with_rdma \
+            --with-rdma=$PREFIX \
+            --enable-rdma-cm \
             --enable-fortran=all \
             --enable-romio \
             --enable-nemesis-shm-collectives \

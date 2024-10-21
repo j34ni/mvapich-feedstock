@@ -9,6 +9,24 @@ Package license: BSD-3-Clause
 
 Summary: MVAPICH, a high-performance MPI library by The Ohio State University.
 
+MVAPICH2 is a high-performance implementation of the MPI (Message Passing Interface) standard.
+It provides enhancements including optimization for different networking technologies.
+
+
+The default value for `MV2_ENABLE_AFFINITY` is typically `1` (enabled). This setting binds MPI processes
+to specific CPU cores to improve performance due to cache locality and reduced context switching.
+In some environments, particularly those using the Slurm job scheduler, this may degrade performances
+or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
+
+
+To select the OFI version use: `conda install -c conda-forge mvapich=3.0=*_ofi`, and for the UCX version:
+`conda install -c conda-forge mvapich=3.0=*_ucx`.
+
+
+The necessary GNU compilers (i.e., gcc_linux-64, gfortran_linux-64 and gxx_linux-64) have to be added manually
+since they are not automatically installed in the Conda environment as dependencies.
+
+
 Current build status
 ====================
 
@@ -27,10 +45,17 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_deviceofi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_deviceofi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_deviceucx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_deviceucx" alt="variant">
                 </a>
               </td>
             </tr><tr>
