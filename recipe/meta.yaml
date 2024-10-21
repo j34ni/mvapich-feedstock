@@ -35,7 +35,13 @@ requirements:
 
 test:
   commands:
+{% if target_platform == "linux-64" %}
     - mpiexec -n 2 $PREFIX/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_latency -m 1024:1024
+{% else %}
+    # Compile and run the Hello World MPI program
+    - mpicc -o hello_world_mpi hello_world_mpi.c
+    - mpiexec -n 2 ./hello_world_mpi
+{% endif %}
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
