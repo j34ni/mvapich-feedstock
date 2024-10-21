@@ -28,9 +28,6 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
     export CROSS_F90_INTEGER_KIND=4
     export CROSS_F90_REAL_MODEL=" 6 , 37"
     export CROSS_F90_DOUBLE_MODEL=" 15 , 307"
-else
-    echo "Set CROSS_F77_* and CROSS_F90 variables for cross compiling"
-    exit 1
   fi
 fi
 
