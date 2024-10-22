@@ -1,5 +1,5 @@
 {% set version = "3.0" %}
-{% set device_variant = device if device else "default" %}
+{% set netmod_variant = netmod if netmod else "default" %}
 
 package:
   name: mvapich
@@ -11,9 +11,8 @@ source:
 
 build:
   number: 1
-  string: "h{{ PKG_HASH }}_{{ device_variant }}"
+  string: "h{{ PKG_HASH }}_{{ netmod_variant }}"
   skip: true  # [win or osx]
-  skip: false  # [arm64]
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
 
@@ -27,7 +26,7 @@ requirements:
     - make
   host:
     - libhwloc
-    {% if device == "ucx" %}
+    {% if netmod == "ucx" %}
     - ucx >=1.12.0
     {% endif %}
   run:
@@ -53,20 +52,23 @@ about:
   description: |
     MVAPICH is a high-performance implementation of the MPI (Message Passing Interface) standard.
     It provides enhancements including optimization for different networking technologies.
-    
+
     ### Important Configuration
     The default value for `MV2_ENABLE_AFFINITY` is typically `1` (enabled). This setting binds MPI processes
     to specific CPU cores to improve performance due to cache locality and reduced context switching.
-    In some environments, particularly those using the Slurm job scheduler, this may degrade performances
+    In some environments, particularly those using the Slurm job scheduler, this may degrade performance
     or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
 
-    ### OFI or UCX version
-    MVAPICH supports two high-level network APIs, namely OFI and UCX: to select the OFI version use 
-    `conda install conda-forge::mvapich=*=*_ofi`, and for the UCX version `conda install conda-forge::mvapich=*=*_ucx`.
+    ### Selecting Netmods: OFI or UCX
+    MVAPICH supports two high-level network modules (netmods), namely OFI and UCX:
+    - For the OFI netmod, use: `conda install conda-forge::mvapich=*=*_ofi`
+    - For the UCX netmod, use: `conda install conda-forge::mvapich=*=*_ucx`
 
-    ### About the compilers
+    These commands will install the MVAPICH package configured with the desired netmod.
+
+    ### About the Compilers
     Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64` for `linux-64`, or
-    their equivalent for other plateforms) have to be added manually since they are not automatically installed in the Conda 
+    their equivalent for other platforms) have to be added manually since they are not automatically installed in the Conda
     environment as dependencies.
     
 extra:

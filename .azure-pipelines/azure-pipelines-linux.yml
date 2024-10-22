@@ -8,28 +8,28 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_deviceofi:
-        CONFIG: linux_64_deviceofi
+      linux_64_netmodofi:
+        CONFIG: linux_64_netmodofi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_deviceucx:
-        CONFIG: linux_64_deviceucx
+      linux_64_netmoducx:
+        CONFIG: linux_64_netmoducx
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_aarch64_deviceofi:
-        CONFIG: linux_aarch64_deviceofi
+      linux_aarch64_netmodofi:
+        CONFIG: linux_aarch64_netmodofi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_aarch64_deviceucx:
-        CONFIG: linux_aarch64_deviceucx
+      linux_aarch64_netmoducx:
+        CONFIG: linux_aarch64_netmoducx
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_ppc64le_deviceofi:
-        CONFIG: linux_ppc64le_deviceofi
+      linux_ppc64le_netmodofi:
+        CONFIG: linux_ppc64le_netmodofi
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_ppc64le_deviceucx:
-        CONFIG: linux_ppc64le_deviceucx
+      linux_ppc64le_netmoducx:
+        CONFIG: linux_ppc64le_netmoducx
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360
