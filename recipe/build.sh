@@ -31,18 +31,18 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   fi
 fi
 
-# Support for ch4:ucx or ch4:ofi devices
-build_with_device=""
-if [ "$device" == "ucx" ]; then
+# Set netmod configuration
+build_with_netmod=""
+if [ "$netmod" == "ucx" ]; then
   echo "Build with UCX support"
-  build_with_device=" --with-device=ch4:ucx --with-ucx=$PREFIX "
-else
+  build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
+else  [[ "$netmod" == "ofi" ]]; then
   echo "Build with OFI support"
-  build_with_device=" --with-device=ch4:ofi "
+  build_with_netmod=" --with-device=ch4:ofi "
 fi
 
 ./configure --prefix=$PREFIX \
-            $build_with_device \
+            $build_with_netmod \
             --with-hwloc-prefix=$PREFIX \
             --with-rdma=$PREFIX \
             --enable-rdma-cm \
