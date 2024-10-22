@@ -15,16 +15,20 @@ It provides enhancements including optimization for different networking technol
 
 The default value for `MV2_ENABLE_AFFINITY` is typically `1` (enabled). This setting binds MPI processes
 to specific CPU cores to improve performance due to cache locality and reduced context switching.
-In some environments, particularly those using the Slurm job scheduler, this may degrade performances
+In some environments, particularly those using the Slurm job scheduler, this may degrade performance
 or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
 
 
-MVAPICH supports two high-level network APIs, namely OFI and UCX: to select the OFI version use
-`conda install conda-forge::mvapich=*=*_ofi`, and for the UCX version `conda install conda-forge::mvapich=*=*_ucx`.
+MVAPICH supports two high-level network modules (netmods), namely OFI and UCX:
+- For the OFI netmod, use: `conda install conda-forge::mvapich=*=*_ofi`
+- For the UCX netmod, use: `conda install conda-forge::mvapich=*=*_ucx`
+
+These commands will install the MVAPICH package configured with the desired netmod.
 
 
-Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64`) have to
-be added manually since they are not automatically installed in the Conda environment as dependencies.
+Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64` for `linux-64`, or
+their equivalent for other platforms) have to be added manually since they are not automatically installed in the Conda
+environment as dependencies.
 
 
 Current build status
@@ -45,45 +49,45 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_deviceofi</td>
+              <td>linux_64_netmodofi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_deviceofi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmodofi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_deviceucx</td>
+              <td>linux_64_netmoducx</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_deviceucx" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmoducx" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_deviceofi</td>
+              <td>linux_aarch64_netmodofi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_deviceofi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmodofi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_deviceucx</td>
+              <td>linux_aarch64_netmoducx</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_deviceucx" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmoducx" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_deviceofi</td>
+              <td>linux_ppc64le_netmodofi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_deviceofi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmodofi" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_deviceucx</td>
+              <td>linux_ppc64le_netmoducx</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_deviceucx" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx" alt="variant">
                 </a>
               </td>
             </tr>

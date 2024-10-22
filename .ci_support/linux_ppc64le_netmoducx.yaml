@@ -16,8 +16,6 @@ cxx_compiler:
 - gxx
 cxx_compiler_version:
 - '13'
-device:
-- ofi
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fortran_compiler:
@@ -26,8 +24,8 @@ fortran_compiler_version:
 - '13'
 libhwloc:
 - 2.11.2
-rdma_core:
-- '53'
+netmod:
+- ucx
 target_platform:
 - linux-ppc64le
 ucx:
