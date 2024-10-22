@@ -36,7 +36,7 @@ build_with_netmod=""
 if [ "$netmod" == "ucx" ]; then
   echo "Build with UCX support"
   build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
-else  [[ "$netmod" == "ofi" ]]; then
+else
   echo "Build with OFI support"
   build_with_netmod=" --with-device=ch4:ofi "
 fi
