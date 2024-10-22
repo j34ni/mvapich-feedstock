@@ -64,8 +64,9 @@ about:
     `conda install conda-forge::mvapich=*=*_ofi`, and for the UCX version `conda install conda-forge::mvapich=*=*_ucx`.
 
     ### About the compilers
-    Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64`) have to
-    be added manually since they are not automatically installed in the Conda environment as dependencies.
+    Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64` for `linux-64`, or
+    the equivalent for other plateforms) have to be added manually since they are not automatically installed in the Conda 
+    environment as dependencies.
     
 extra:
   recipe-maintainers:
