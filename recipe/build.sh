@@ -1,19 +1,27 @@
 #!/bin/bash
 
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* .
-
 set -ex
 
 unset F77 F90
 
 export FFLAGS="-fallow-argument-mismatch ${FFLAGS}"
 
-echo "CC_FOR_BUILD "$CC_FOR_BUILD
-echo "CXX_FOR_BUILD " $CXX_FOR_BUILD
+export CC=$(basename "$CC")
+export CXX=$(basename "$CXX")
+export FC=$(basename "$FC")
+build_for_fortran="yes"
 
-export CC=$CC_FOR_BUILD
-export CXX=$CXX_FOR_BUILD
+if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 && $target_platform == osx-arm64 ]]; then
+  # use Conda-Forge's Arm64 config.guess and config.sub, see
+  # https://conda-forge.org/blog/posts/2020-10-29-macos-arm64/
+  list_config_to_patch=$(find ./ -name config.guess | sed -E 's/config.guess//')
+  for config_folder in $list_config_to_patch; do
+      echo "copying config to $config_folder ...\n"
+      cp -v $BUILD_PREFIX/share/gnuconfig/config.* $config_folder
+  done
+  ./autogen.sh
+  build_for_fortran="no"
+fi
 
 build_with_rdma=""
 build_with_netmod=""
@@ -52,7 +60,7 @@ fi
             --with-hwloc-prefix=$PREFIX \
             --with-rdma=$PREFIX \
             --enable-rdma-cm \
-            --enable-fortran=no \
+            --enable-fortran=${build_for_fortran} \
             --enable-romio \
             --enable-nemesis-shm-collectives \
             --disable-gl \
