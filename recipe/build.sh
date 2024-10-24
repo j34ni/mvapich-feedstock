@@ -9,9 +9,11 @@ unset F77 F90
 
 export FFLAGS="-fallow-argument-mismatch ${FFLAGS}"
 
-export CC=$(basename "$CC")
-export CXX=$(basename "$CXX")
-export FC=$(basename "$FC")
+echo "CC_FOR_BUILD "$CC_FOR_BUILD
+echo "CXX_FOR_BUILD " $CXX_FOR_BUILD
+
+export CC=$CC_FOR_BUILD
+export CXX=$CXX_FOR_BUILD
 
 build_with_rdma=""
 build_with_netmod=""
@@ -50,7 +52,7 @@ fi
             --with-hwloc-prefix=$PREFIX \
             --with-rdma=$PREFIX \
             --enable-rdma-cm \
-            --enable-fortran=all \
+            --enable-fortran=no \
             --enable-romio \
             --enable-nemesis-shm-collectives \
             --disable-gl \
