@@ -20,8 +20,8 @@ or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABL
 
 
 MVAPICH supports two high-level network modules (netmods), namely OFI and UCX:
-- For the OFI netmod, use: `conda install conda-forge::mvapich=*=*_ofi`
-- For the UCX netmod, use: `conda install conda-forge::mvapich=*=*_ucx`
+- For the OFI netmod, use: `conda install conda-forge::mvapich=*=ofi_*`
+- For the UCX netmod, use: `conda install conda-forge::mvapich=*=ucx_*`
 
 These commands will install the MVAPICH package configured with the desired netmod.
 
@@ -88,6 +88,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_netmodnonetmod</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_netmodnonetmod" alt="variant">
                 </a>
               </td>
             </tr>
