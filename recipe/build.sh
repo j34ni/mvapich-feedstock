@@ -38,10 +38,9 @@ else
   build_with_netmod=" --with-device=ch4:ofi "
 fi
 
-if [ "$target_platform" != "osx-arm64" ]; then
+if [ "$target_platform" == "osx-arm64" ]; then
   echo "Building for osx-arm64"
-  build_with_netmod=" --with-device=ch4:ofi "
-fi  build_with_netmod=" --with-device=ch4 "
+  build_with_netmod=" --with-device=ch4 "
 fi
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
