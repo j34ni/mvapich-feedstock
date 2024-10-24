@@ -44,6 +44,8 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
 fi
 
 ./configure --prefix=$PREFIX \
+            --host="${HOST}" \
+            --build="${BUILD}" \
             $build_with_netmod \
             --with-hwloc-prefix=$PREFIX \
             --with-rdma=$PREFIX \
