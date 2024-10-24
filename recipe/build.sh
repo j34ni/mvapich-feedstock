@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
+
 set -ex
 
 unset F77 F90
@@ -11,9 +14,18 @@ export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
 build_with_rdma=""
+build_with_netmod=""
 if [[ "$target_platform" == linux-* ]]; then
   echo "Build with RDMA support"
   build_with_rdma="--with-rdma=$PREFIX --enable-rdma-cm "
+  if [ "$netmod" == "ucx" ]; then
+    echo "Build with UCX support"
+    build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
+  else
+    echo "Build with OFI support"
+    build_with_netmod=" --with-device=ch4:ofi "
+  fi
+  echo "Building for osx-arm64"
 fi
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
@@ -29,16 +41,6 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
     export CROSS_F90_REAL_MODEL=" 6 , 37"
     export CROSS_F90_DOUBLE_MODEL=" 15 , 307"
   fi
-fi
-
-# Set netmod configuration
-build_with_netmod=""
-if [ "$netmod" == "ucx" ]; then
-  echo "Build with UCX support"
-  build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
-else
-  echo "Build with OFI support"
-  build_with_netmod=" --with-device=ch4:ofi "
 fi
 
 ./configure --prefix=$PREFIX \
@@ -58,4 +60,9 @@ fi
             --enable-static=no
 
 make -j"${CPU_COUNT}"
+
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  make check
+fi
+
 make install

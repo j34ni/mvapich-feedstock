@@ -1,6 +1,5 @@
 {% set version = "3.0" %}
-{% set build = 2 %}
-{% set netmod_variant = netmod if netmod else "default" %}
+{% set build = 3 %}
 
 package:
   name: mvapich
@@ -12,13 +11,18 @@ source:
 
 build:
   number: {{ build }}
-  string: "{{ netmod_variant }}_h{{ PKG_HASH }}_{{ build }}"
+  string: "{{ netmod }}_h{{ PKG_HASH }}_{{ build }}"
   skip: true  # [win or osx]
+  {% if netmod == "nonetmod" %}
+  skip: false  # [arm64]
+  skip: true  # [linux]
+  {% endif %}
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - bison
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
