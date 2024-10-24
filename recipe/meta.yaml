@@ -13,9 +13,8 @@ build:
   number: {{ build }}
   string: "{{ netmod }}_h{{ PKG_HASH }}_{{ build }}"
   skip: true  # [win or osx]
-  {% if netmod == "nonetmod" %}
+  {% if netmod == "ofi" %}
   skip: false  # [arm64]
-  skip: true  # [linux]
   {% endif %}
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}

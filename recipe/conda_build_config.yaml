@@ -1,4 +1,3 @@
 netmod:
   - ucx
   - ofi
-  - nonetmod

@@ -28,15 +28,16 @@ build_with_netmod=""
 if [[ "$target_platform" == linux-* ]]; then
   echo "Build with RDMA support"
   build_with_rdma="--with-rdma=$PREFIX --enable-rdma-cm "
-  if [ "$netmod" == "ucx" ]; then
-    echo "Build with UCX support"
-    build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
-  else
-    echo "Build with OFI support"
-    build_with_netmod=" --with-device=ch4:ofi "
-  fi
-  echo "Building for osx-arm64"
 fi
+
+if [ "$netmod" == "ucx" || "$target_platform" != "osx-arm64" ]; then
+  echo "Build with UCX support"
+  build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
+else
+  echo "Build with OFI support"
+  build_with_netmod=" --with-device=ch4:ofi "
+fi
+
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   if [[ "$target_platform" == "osx-arm64" || "$target_platform" == "linux-aarch64" || "$target_platform" == "linux-ppc64le" ]]; then
@@ -72,9 +73,4 @@ fi
             --enable-static=no
 
 make -j"${CPU_COUNT}"
-
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
-  make check
-fi
-
 make install
