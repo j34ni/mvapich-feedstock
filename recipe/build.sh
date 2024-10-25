@@ -39,7 +39,6 @@ fi
 if [[ "$target_platform" == "osx-arm64" ]]; then
   echo "Building for osx-arm64"
   build_with_netmod=" --with-device=ch4 " 
-  export LDFLAGS="${LDFLAGS} -Wl,-commons,use_dylibs -Wl,-twolevel_namespace" 
 fi
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then

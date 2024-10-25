@@ -1,0 +1,30 @@
+--- a/prov/hook/src/hook_domain.c
++++ b/prov/hook/src/hook_domain.c
+@@ -121,7 +121,7 @@ static void hook_process_node_message(struct hook_domain *domain,
+ #endif
+                                         hook_credit_handler);
+ 
+-    ssize_t (*credit_handler)(struct fid_ep *, size_t) =
++    ssize_t (*credit_handler)(struct fid_ep *, uint64_t) =
+         hook_credit_handler;
+ 
+     assert(credit_handler == hook_domain->set_credit_handler);
+@@ -147,7 +147,7 @@ static void hook_domain_handle_credits(struct hook_domain *domain) {
+     struct hook_domain_event *event;
+ 
+     event->credit_handler = hook_domain->set_credit_handler;
+-    void (*add_credits)(struct fid_ep *, size_t) = hook_add_credits;
++    void (*add_credits)(struct fid_ep *, uint64_t) = hook_add_credits;
+ 
+     assert(add_credits == hook_domain->add_credits);
+     add_credits(fid_ep, credits);
+@@ -149,7 +149,7 @@ static void hook_domain_handle_credits(struct hook_domain *domain) {
+ 
+ 
+-void hook_set_send_handler(struct fid_domain *domain,
+-                           ssize_t (*send_handler)(struct fid_ep *, size_t))
++void hook_set_send_handler(struct fid_domain *domain,
++                           ssize_t (*send_handler)(struct fid_ep *, uint64_t))
+     domain->send_handler = send_handler;
+ }
+
