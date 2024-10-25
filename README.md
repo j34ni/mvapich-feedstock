@@ -20,8 +20,8 @@ or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABL
 
 
 MVAPICH supports two high-level network modules (netmods), namely OFI and UCX:
-- For the OFI netmod, use: `conda install conda-forge::mvapich=*=*_ofi`
-- For the UCX netmod, use: `conda install conda-forge::mvapich=*=*_ucx`
+- For the OFI netmod, use: `conda install conda-forge::mvapich=*=ofi_*`
+- For the UCX netmod, use: `conda install conda-forge::mvapich=*=ucx_*`
 
 These commands will install the MVAPICH package configured with the desired netmod.
 
