@@ -1,38 +1,37 @@
---- modules/libfabric/prov/hook/src/hook_domain.c
-+++ modules/libfabric/prov/hook/src/hook_domain.c
+--- mvapich-3.0/modules/libfabric/prov/hook/src/hook_domain.c	2022-05-12 19:21:07.000000000 +0000
++++ mvapich-3.0/modules/libfabric/prov/hook/src/hook_domain.c.modified	2024-10-25 12:09:14.014914776 +0000
 @@ -102,23 +102,23 @@
-        .regattr = hook_mr_regattr,
+ 	.regattr = hook_mr_regattr,
  };
-
+ 
 -static ssize_t hook_credit_handler(struct fid_ep *ep_fid, size_t credits)
 +static ssize_t hook_credit_handler(struct fid_ep *ep_fid, uint64_t credits)
  {
--       /*
--        * called from the base provider, ep_fid is the base ep, and
--        * it's fid context is the hook ep.
--        */
--       struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
+-	/*
+-	 * called from the base provider, ep_fid is the base ep, and
+-	 * it's fid context is the hook ep.
+-	 */
+-	struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
 +        /*
 +         * called from the base provider, ep_fid is the base ep, and
 +         * it's fid context is the hook ep.
 +         */
 +        struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
-
--       return (*ep->domain->base_credit_handler)(&ep->ep, credits);
+ 
+-	return (*ep->domain->base_credit_handler)(&ep->ep, credits);
 +        return (*ep->domain->base_credit_handler)(&ep->ep, (uint64_t)credits);
  }
-
+ 
  static void hook_set_send_handler(struct fid_domain *domain_fid,
--               ssize_t (*credit_handler)(struct fid_ep *ep, size_t credits))
+-		ssize_t (*credit_handler)(struct fid_ep *ep, size_t credits))
 +                ssize_t (*credit_handler)(struct fid_ep *ep, uint64_t credits))
  {
--       struct hook_domain *domain = container_of(domain_fid,
--                                                 struct hook_domain, domain);
+-	struct hook_domain *domain = container_of(domain_fid,
+-						  struct hook_domain, domain);
 -
 +        struct hook_domain *domain = container_of(domain_fid,
 +                                                  struct hook_domain, domain);
 + 
-        domain->base_credit_handler = credit_handler;
-        domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
-                                                     hook_credit_handler);
-
+ 	domain->base_credit_handler = credit_handler;
+ 	domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
+ 						     hook_credit_handler);
