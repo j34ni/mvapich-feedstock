@@ -38,11 +38,6 @@ else
   build_with_netmod=" --with-device=ch4:ofi "
 fi
 
-if [ "$target_platform" == "osx-arm64" ]; then
-  echo "Building for osx-arm64"
-  build_with_netmod=" --with-device=ch4 "
-fi
-
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   if [[ "$target_platform" == "osx-arm64" || "$target_platform" == "linux-aarch64" || "$target_platform" == "linux-ppc64le" ]]; then
     export CROSS_F77_SIZEOF_INTEGER=4
@@ -56,6 +51,21 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
     export CROSS_F90_REAL_MODEL=" 6 , 37"
     export CROSS_F90_DOUBLE_MODEL=" 15 , 307"
   fi
+fi
+
+if [[ "$target_platform" == "osx-arm64" ]]; then
+  echo "Building for osx-arm64"
+  echo "Use a more recent release of libfabric"
+  wget https://github.com/ofiwg/libfabric/releases/download/v1.22.0/libfabric-1.22.0.tar.bz2
+  tar -xvjf libfabric-1.22.0.tar.bz2
+  cd libfabric-1.22.0
+  ./configure --prefix=$PREFIX \
+	    --with-numa=$PREFIX \
+	    --with-libnl=$PREFIX
+
+  make -j"${CPU_COUNT}"
+  make install
+  build_with_netmod=" --with-device=ch4:ofi -with-libfabric=$PREFIX "
 fi
 
 ./configure --prefix=$PREFIX \

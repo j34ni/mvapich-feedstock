@@ -30,6 +30,8 @@ requirements:
     - make
   host:
     - libhwloc
+    - libnl  # [linux]
+    - numactl  # [linux]
     {% if netmod == "ucx" %}
     - ucx >=1.12.0
     {% endif %}
