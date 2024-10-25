@@ -1,5 +1,5 @@
---- mvapich-3.0/modules/libfabric/prov/hook/src/hook_domain.c	2022-05-12 19:21:07.000000000 +0000
-+++ mvapich-3.0/modules/libfabric/prov/hook/src/hook_domain.c.modified	2024-10-25 12:09:14.014914776 +0000
+--- modules/libfabric/prov/hook/src/hook_domain.c
++++ modules/libfabric/prov/hook/src/hook_domain.c
 @@ -102,23 +102,23 @@
  	.regattr = hook_mr_regattr,
  };
