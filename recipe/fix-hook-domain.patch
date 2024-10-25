@@ -56,7 +56,7 @@
 -	.set_send_handler = hook_set_send_handler,
 -	.available = hook_flow_ctrl_available,
 +    .size = sizeof(struct ofi_ops_flow_ctrl),
-+    .add_credits = (void (*)(struct fid_ep *, uint64_t)) hook_add_credits,
++    .add_credits = hook_add_credits,
 +    .enable = hook_enable_ep_flow_ctrl,
 +    .set_send_handler = hook_set_send_handler,
 +    .available = hook_flow_ctrl_available,
