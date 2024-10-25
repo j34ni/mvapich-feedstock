@@ -12,11 +12,9 @@ export FC=$(basename "$FC")
 build_for_fortran="yes"
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 && $target_platform == osx-arm64 ]]; then
-  # use Conda-Forge's Arm64 config.guess and config.sub, see
-  # https://conda-forge.org/blog/posts/2020-10-29-macos-arm64/
   list_config_to_patch=$(find ./ -name config.guess | sed -E 's/config.guess//')
   for config_folder in $list_config_to_patch; do
-      echo "copying config to $config_folder ...\n"
+      echo "Copying config to $config_folder ..."
       cp -v $BUILD_PREFIX/share/gnuconfig/config.* $config_folder
   done
   unset FC
@@ -30,12 +28,18 @@ if [[ "$target_platform" == linux-* ]]; then
   build_with_rdma="--with-rdma=$PREFIX --enable-rdma-cm "
 fi
 
-if [ "$netmod" == "ucx" ]; then
+if [[ "$netmod" == "ucx" ]]; then
   echo "Build with UCX support"
   build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
 else
   echo "Build with OFI support"
   build_with_netmod=" --with-device=ch4:ofi "
+fi
+
+if [[ "$target_platform" == "osx-arm64" ]]; then
+  echo "Building for osx-arm64"
+  build_with_netmod=" --with-device=ch4 " 
+  export LDFLAGS="${LDFLAGS} -Wl,-commons,use_dylibs -Wl,-twolevel_namespace" 
 fi
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
@@ -51,21 +55,6 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
     export CROSS_F90_REAL_MODEL=" 6 , 37"
     export CROSS_F90_DOUBLE_MODEL=" 15 , 307"
   fi
-fi
-
-if [[ "$target_platform" == "osx-arm64" ]]; then
-  echo "Building for osx-arm64"
-  echo "Use a more recent release of libfabric"
-  wget https://github.com/ofiwg/libfabric/releases/download/v1.22.0/libfabric-1.22.0.tar.bz2
-  tar -xvjf libfabric-1.22.0.tar.bz2
-  cd libfabric-1.22.0
-  ./configure --prefix=$PREFIX \
-	    --with-numa=$PREFIX \
-	    --with-libnl=$PREFIX
-
-  make -j"${CPU_COUNT}"
-  make install
-  build_with_netmod=" --with-device=ch4:ofi -with-libfabric=$PREFIX "
 fi
 
 ./configure --prefix=$PREFIX \
