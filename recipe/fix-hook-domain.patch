@@ -1,30 +1,42 @@
---- a/prov/hook/src/hook_domain.c
-+++ b/prov/hook/src/hook_domain.c
-@@ -121,7 +121,7 @@ static void hook_process_node_message(struct hook_domain *domain,
- #endif
-                                         hook_credit_handler);
- 
--    ssize_t (*credit_handler)(struct fid_ep *, size_t) =
-+    ssize_t (*credit_handler)(struct fid_ep *, uint64_t) =
-         hook_credit_handler;
- 
-     assert(credit_handler == hook_domain->set_credit_handler);
-@@ -147,7 +147,7 @@ static void hook_domain_handle_credits(struct hook_domain *domain) {
-     struct hook_domain_event *event;
- 
-     event->credit_handler = hook_domain->set_credit_handler;
--    void (*add_credits)(struct fid_ep *, size_t) = hook_add_credits;
-+    void (*add_credits)(struct fid_ep *, uint64_t) = hook_add_credits;
- 
-     assert(add_credits == hook_domain->add_credits);
-     add_credits(fid_ep, credits);
-@@ -149,7 +149,7 @@ static void hook_domain_handle_credits(struct hook_domain *domain) {
- 
- 
--void hook_set_send_handler(struct fid_domain *domain,
--                           ssize_t (*send_handler)(struct fid_ep *, size_t))
-+void hook_set_send_handler(struct fid_domain *domain,
-+                           ssize_t (*send_handler)(struct fid_ep *, uint64_t))
-     domain->send_handler = send_handler;
- }
+--- a/modules/libfabric/prov/hook/src/hook_domain.c
++++ b/modules/libfabric/prov/hook/src/hook_domain.c
+@@ -124,7 +124,7 @@ static ssize_t hook_credit_handler(struct fid_ep *ep_fid, size_t credits)
+ 	/*
+ 	 * called from the base provider, ep_fid is the base ep, and
+ 	 * it's fid context is the hook ep.
+ 	 */
+ 	struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
+
+-	return (*ep->domain->base_credit_handler)(&ep->ep, credits);
++	return (*ep->domain->base_credit_handler)(&ep->ep, (uint64_t)credits);
+}
+
+@@ -150,7 +150,7 @@ static struct fi_ops_flow_ctrl hook_ops_flow_ctrl = {
+ 	.add_credits = hook_add_credits,
+ 	.enable = hook_enable_ep_flow_ctrl,
+ 	.set_send_handler = hook_set_send_handler,
+ 	.available = hook_flow_ctrl_available,
+};
+
+@@ -152,7 +152,7 @ static struct fi_ops_flow_ctrl hook_ops_flow_ctrl = {
+static void hook_set_send_handler(struct fid_domain *domain_fid,
+-		ssize_t (*credit_handler)(struct fid_ep *ep, size_t credits))
++		ssize_t (*credit_handler)(struct fid_ep *ep, uint64_t credits))
+{
+ 	struct hook_domain *domain = container_of(domain_fid,
+ 						  struct hook_domain, domain);
+
+ 	domain->base_credit_handler = credit_handler;
+ 	domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
+ 						     hook_credit_handler);
+}
+
+@@ -152,7 +152,7 @ static void hook_add_credits(struct fid_ep *ep_fid, size_t credits)
+static void hook_add_credits(struct fid_ep *ep_fid, size_t credits)
+{
+	struct hook_ep *ep = container_of(ep_fid, struct hook_ep, ep);
+
+-	ep->domain->base_ops_flow_ctrl->add_credits(ep->hep, credits);
++	ep->domain->base_ops_flow_ctrl->add_credits(ep->hep, (uint64_t)credits);
+}
 
