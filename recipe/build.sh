@@ -63,7 +63,6 @@ fi
             --build="${BUILD}" \
             $build_with_netmod \
             --with-hwloc-prefix=$PREFIX \
-            --with-rdma=$PREFIX \
             $build_with_rdma \
             --enable-fortran=${build_for_fortran} \
             --enable-romio \
