@@ -1,59 +1,28 @@
---- modules/libfabric/prov/hook/src/hook_domain.c
-+++ modules/libfabric/prov/hook/src/hook_domain.c
-@@ -102,40 +102,33 @@
- 	.regattr = hook_mr_regattr,
- };
- 
--static ssize_t hook_credit_handler(struct fid_ep *ep_fid, size_t credits)
-+static ssize_t hook_credit_handler(struct fid_ep *ep_fid, uint64_t credits)
+--- modules/libfabric/prov/hook/src/hook_domain.c 
++++ modules/libfabric/prov/hook/src/hook_domain.c 
+@@ -105,7 +105,7 @@
  {
--	/*
--	 * called from the base provider, ep_fid is the base ep, and
--	 * it's fid context is the hook ep.
--	 */
--	struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
-+    /*
-+     * called from the base provider, ep_fid is the base ep, and
-+     * it's fid context is the hook ep.
-+     */
-+    struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
- 
--	return (*ep->domain->base_credit_handler)(&ep->ep, credits);
-+    return (*ep->domain->base_credit_handler)(&ep->ep, credits);
+        /*
+         * called from the base provider, ep_fid is the base ep, and
+         * it's fid context is the hook ep.
+         */
+        struct hook_ep *ep = (struct hook_ep *)ep_fid->fid.context;
+
+-        return (*ep->domain->base_credit_handler)(&ep->ep, credits);
++        return (*ep->domain->base_credit_handler)(&ep->ep, (uint64_t)credits);
  }
- 
+
+@@ -117,8 +117,8 @@
  static void hook_set_send_handler(struct fid_domain *domain_fid,
--		ssize_t (*credit_handler)(struct fid_ep *ep, size_t credits))
-+    ssize_t (*credit_handler)(struct fid_ep *ep, uint64_t credits))
+-                ssize_t (*credit_handler)(struct fid_ep *ep, size_t credits))
++                ssize_t (*credit_handler)(struct fid_ep *ep, uint64_t credits))
  {
--	struct hook_domain *domain = container_of(domain_fid,
--						  struct hook_domain, domain);
-+    struct hook_domain *domain = container_of(domain_fid,
-+					      struct hook_domain, domain);
- 
--	domain->base_credit_handler = credit_handler;
--	domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
--						     hook_credit_handler);
-+    domain->base_credit_handler = credit_handler;
-+    domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
-+						 hook_credit_handler);
+        struct hook_domain *domain = container_of(domain_fid,
+                                                  struct hook_domain, domain);
+
+-        domain->base_credit_handler = credit_handler;
+-        domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
++        domain->base_credit_handler = credit_handler;
++        domain->base_ops_flow_ctrl->set_send_handler(domain->hdomain,
+                                                     hook_credit_handler);
  }
- 
--static int hook_enable_ep_flow_ctrl(struct fid_ep *ep_fid, uint64_t threshold)
-+static void hook_add_credits(struct fid_ep *ep_fid, uint64_t credits)
- {
--	struct hook_ep *ep = container_of(ep_fid, struct hook_ep, ep);
-+    struct hook_ep *ep = container_of(ep_fid, struct hook_ep, ep);
- 
--	return ep->domain->base_ops_flow_ctrl->enable(ep->hep, threshold);
--}
--
--static void hook_add_credits(struct fid_ep *ep_fid, size_t credits)
--{
--	struct hook_ep *ep = container_of(ep_fid, struct hook_ep, ep);
--
--	ep->domain->base_ops_flow_ctrl->add_credits(ep->hep, credits);
-+    ep->domain->base_ops_flow_ctrl->add_credits(ep->hep, (uint64_t)credits);
- }
- 
- static bool hook_flow_ctrl_available(struct fid_ep *ep_fid)
