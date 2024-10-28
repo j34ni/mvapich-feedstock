@@ -69,9 +69,11 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
 fi
 
 # Set conditional flags for bison and flex based on target
-bison_flags=""
+bison_flags="-y "
 if [[ "$target_platform" == "osx-arm64" ]]; then
-    bison_flags="-Wno-yacc"
+  bison_flags="-Wno-yacc"
+  export CFLAGS="${CFLAGS} -Wno-error"
+  export CXXFLAGS="${CXXFLAGS} -Wno-error"
 fi
 
 ./configure --prefix=$PREFIX \
