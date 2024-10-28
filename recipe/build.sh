@@ -1,6 +1,18 @@
 #!/bin/bash
+set -e
 
-set -ex
+# Replace the "old" libfabric which comes with mvapich by a more recent version
+if [[ "$netmod" == "ofi" ]]; then
+  rm -rf mvapich_source/modules/libfabric
+  cp -r libfabric_source mvapich_source/modules/libfabric
+
+  # Run autoreconf to regenerate the configure script and other build files
+  cd mvapich_source/modules/libfabric
+  autoreconf -ivf
+  cd ../../..
+fi
+
+cd mvapich_source 
 
 unset F77 F90
 
