@@ -89,7 +89,8 @@ fi
             --disable-opencl \
             --disable-dependency-tracking \
             --with-sysroot \
-            --enable-static=no
+            --enable-static=no \
+            BISONFLAGS=${bison_flags}
 
 make -j"${CPU_COUNT}" V=1
 make install
