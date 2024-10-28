@@ -85,5 +85,5 @@ fi
             --with-sysroot \
             --enable-static=no
 
-make -j"${CPU_COUNT}"
+make -j"${CPU_COUNT}" V=1
 make install
