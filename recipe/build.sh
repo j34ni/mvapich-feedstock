@@ -68,6 +68,12 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   fi
 fi
 
+# Set conditional flags for bison and flex based on target
+bison_flags="-y -d"
+if [[ "$target_platform" == "osx-arm64" ]]; then
+    bison_flags+=" -Wno-yacc"
+fi
+
 ./configure --prefix=$PREFIX \
             --host="${HOST}" \
             --build="${BUILD}" \
