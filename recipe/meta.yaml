@@ -27,13 +27,14 @@ build:
 requirements:
   build:
     - gnuconfig  # [unix]
+    - autoconf
+    - automake
     - bison
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
     - {{ stdlib("c") }}
-    - autoconf
-    - automake
+    - flex
     - libtool 
     - make
     - pkg-config
