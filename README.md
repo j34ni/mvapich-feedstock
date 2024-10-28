@@ -49,6 +49,48 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
+              <td>linux_64_netmodofi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmodofi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_netmoducx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmoducx" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_netmodofi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmodofi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_netmoducx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmoducx" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_netmodofi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmodofi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_netmoducx</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_arm64_netmodofi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
