@@ -31,8 +31,8 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 && $target_platform == osx-arm64 ]]; t
   done
   unset FC
   build_for_fortran="no"
-  export CFLAGS="${CFLAGS} -mmacosx-version-min=11.0 -Wno-error"
-  export CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=11.0 -Wno-error"
+  export CFLAGS="${CFLAGS} -mmacosx-version-min=11.0 -Wno-error -falign-functions=64 -falign-jumps=64 -falign-labels=64 -falign-loops=64"
+  export CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=11.0 -Wno-error -falign-functions=64 -falign-jumps=64 -falign-labels=64 -falign-loops=64"
   export LDFLAGS="${LDFLAGS} -mmacosx-version-min=11.0"
 fi
 
