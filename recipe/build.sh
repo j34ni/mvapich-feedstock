@@ -4,8 +4,6 @@ set -ex
 
 unset F77 F90
 
-export FFLAGS="-fallow-argument-mismatch ${FFLAGS}"
-
 export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
@@ -41,6 +39,31 @@ else
   build_with_netmod=" --with-device=ch4:ofi "
 fi
 
+# Avoid recording flags in compilers, adapted from MPICH
+# Save the current flags
+export SAVED_CPPFLAGS=$CPPFLAGS
+unset CPPFLAGS
+export SAVED_CFLAGS=$CFLAGS
+unset CFLAGS
+export SAVED_CXXFLAGS=$CXXFLAGS
+unset CXXFLAGS
+export SAVED_LDFLAGS=$LDFLAGS
+unset LDFLAGS
+export SAVED_FFLAGS=$FFLAGS
+unset FFLAGS
+export SAVED_FCFLAGS=$FCFLAGS
+unset FCFLAGS
+
+# Set minimal necessary flags for this build process
+export CPPFLAGS="-I$PREFIX/include"
+export CFLAGS="-I$PREFIX/include"
+export CXXFLAGS="-I$PREFIX/include"
+export FFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
+export FCFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
+export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
+
+export LIBRARY_PATH="$PREFIX/lib"
+
 ./configure --prefix=$PREFIX \
             $build_with_netmod \
             --with-hwloc-prefix=$PREFIX \
@@ -59,3 +82,11 @@ fi
 
 make -j"${CPU_COUNT}"
 make install
+
+# Restore the saved flags after configuration
+export CPPFLAGS=$SAVED_CPPFLAGS
+export CFLAGS=$SAVED_CFLAGS
+export CXXFLAGS=$SAVED_CXXFLAGS
+export LDFLAGS=$SAVED_LDFLAGS
+export FFLAGS=$SAVED_FFLAGS
+export FCFLAGS=$SAVED_FCFLAGS
