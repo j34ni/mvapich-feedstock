@@ -65,10 +65,10 @@ about:
     In some environments, particularly those using the Slurm job scheduler, this may degrade performance
     or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
 
-    ### Selecting Netmods: OFI or UCX
+    ### Selecting Netmods: OFI (external) or UCX
     MVAPICH supports two high-level network modules (netmods), namely OFI and UCX:
-    - For the OFI netmod, use: `conda install conda-forge::mvapich=*=ofi_*`
-    - For the UCX netmod, use: `conda install conda-forge::mvapich=*=ucx_*`
+    for the OFI netmod use `conda install conda-forge::mvapich=*=ofi_*`, 
+    and for the UCX netmod `conda install conda-forge::mvapich=*=ucx_*`.
 
     These commands will install the MVAPICH package configured with the desired netmod.
 
