@@ -36,7 +36,7 @@ if [ "$netmod" == "ucx" ]; then
   build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
 else
   echo "Build with OFI support"
-  build_with_netmod=" --with-device=ch4:ofi "
+  build_with_netmod=" --with-device=ch4:ofi --with-ofi=$PREFIX "
 fi
 
 # Avoid recording flags in compilers, adapted from MPICH
@@ -63,6 +63,8 @@ export FCFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
 export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 
 export LIBRARY_PATH="$PREFIX/lib"
+
+./configure --help
 
 ./configure --prefix=$PREFIX \
             $build_with_netmod \
