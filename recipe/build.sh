@@ -35,7 +35,7 @@ if [ "$netmod" == "ucx" ]; then
   echo "Build with UCX support"
   build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
 else
-  echo "Build with OFI support"
+  echo "Build with external OFI support"
   build_with_netmod=" --with-device=ch4:ofi --with-ofi=$PREFIX "
 fi
 
