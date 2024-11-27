@@ -31,7 +31,11 @@ fi
 
 # Set netmod configuration
 build_with_netmod=""
-if [ "$netmod" == "ucx" ]; then
+IFS='-' read -ra netmod_parts <<< "$netmod"
+netmod_variant="${netmod_parts[0]}"
+netmod_version="${netmod_parts[1]}"
+
+if [ "$netmod_variant" == "ucx" ]; then
   echo "Build with UCX support"
   build_with_netmod=" --with-device=ch4:ucx --with-ucx=$PREFIX "
 else
@@ -63,8 +67,6 @@ export FCFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
 export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 
 export LIBRARY_PATH="$PREFIX/lib"
-
-./configure --help
 
 ./configure --prefix=$PREFIX \
             $build_with_netmod \

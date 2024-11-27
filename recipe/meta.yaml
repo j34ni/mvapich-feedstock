@@ -1,6 +1,6 @@
 {% set version = "3.0" %}
 {% set build = 4 %}
-{% set netmod_variant = netmod if netmod else "default" %}
+{% set netmod_variant, netmod_version = (netmod.split('-')[0], netmod.split('-')[1].replace('-', '_')) if '-' in netmod else (netmod, '') %}
 
 package:
   name: mvapich
@@ -12,7 +12,7 @@ source:
 
 build:
   number: {{ build }}
-  string: "{{ netmod_variant }}_h{{ PKG_HASH }}_{{ build }}"
+  string: "{{ netmod_variant }}_{{ netmod_version }}_h{{ PKG_HASH }}_{{ build }}"
   skip: true  # [win or osx]
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
@@ -27,16 +27,13 @@ requirements:
     - make
   host:
     - libhwloc
-    {% if netmod == "ofi" %}
-    - libfabric
-    {% endif %}
-    {% if netmod == "ucx" %}
+    {% if netmod_variant == "ofi" and netmod_version %}
+    - libfabric {{ netmod_version | replace("-", ".") }}
+    {% elif netmod_variant == "ucx" %}
     - ucx >=1.12.0
     {% endif %}
   run:
-    - libnl
     - mpi 1.0.* mvapich
-    - rdma-core
 
 test:
   requires:
@@ -46,7 +43,7 @@ test:
 {% if target_platform == "linux-64" %}
     - mpiexec -n 2 $PREFIX/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_latency -m 1024:1024
 {% else %}
-    - echo "Skipping linux-aarch64 & linux-ppc64le tests for now"
+    - mpichversion
 {% endif %}
 
 about:
@@ -66,9 +63,11 @@ about:
     or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
 
     ### Selecting Netmods: OFI (external) or UCX
-    MVAPICH supports two high-level network modules (netmods), namely OFI and UCX:
-    for the OFI netmod use `conda install conda-forge::mvapich=*=ofi_*`, 
-    and for the UCX netmod `conda install conda-forge::mvapich=*=ucx_*`.
+    MVAPICH supports two high-level network modules (netmods), namely UCX and OFI:
+    for the UCX netmod use `conda install conda-forge::mvapich=*=ucx*`, and
+    for the OFI netmod `conda install conda-forge::mvapich=*=ofi*`. 
+    As an *experiment* it is also possible to select a particular version of LibFabric, 
+    for instance 1.15.2 with `conda install conda-forge::mvapich=*=ofi_1.15.2*`.
 
     These commands will install the MVAPICH package configured with the desired netmod.
 
