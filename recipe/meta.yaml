@@ -1,5 +1,5 @@
 {% set version = "3.0" %}
-{% set build = 4 %}
+{% set build = 5 %}
 {% set netmod_variant, netmod_version = (netmod.split('-')[0], netmod.split('-')[1].replace('-', '_')) if '-' in netmod else (netmod, '') %}
 
 package:
