@@ -25,9 +25,9 @@ fortran_compiler_version:
 libhwloc:
 - 2.11.2
 netmod:
-- ofi-1.22.0
+- ucx-1.15.0
 target_platform:
-- linux-ppc64le
+- linux-aarch64
 ucx:
 - '1.17'
 zip_keys:
