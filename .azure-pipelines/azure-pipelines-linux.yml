@@ -12,36 +12,72 @@ jobs:
         CONFIG: linux_64_netmodofi-1.15.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_64_netmodofi-1.17.0:
+        CONFIG: linux_64_netmodofi-1.17.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_64_netmodofi-1.22.0:
         CONFIG: linux_64_netmodofi-1.22.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_netmoducx:
-        CONFIG: linux_64_netmoducx
+      linux_64_netmoducx-1.15.0:
+        CONFIG: linux_64_netmoducx-1.15.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_64_netmoducx-1.16.0:
+        CONFIG: linux_64_netmoducx-1.16.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_64_netmoducx-1.17.0:
+        CONFIG: linux_64_netmoducx-1.17.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_aarch64_netmodofi-1.15.2:
         CONFIG: linux_aarch64_netmodofi-1.15.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_netmodofi-1.17.0:
+        CONFIG: linux_aarch64_netmodofi-1.17.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_aarch64_netmodofi-1.22.0:
         CONFIG: linux_aarch64_netmodofi-1.22.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_netmoducx:
-        CONFIG: linux_aarch64_netmoducx
+      linux_aarch64_netmoducx-1.15.0:
+        CONFIG: linux_aarch64_netmoducx-1.15.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_netmoducx-1.16.0:
+        CONFIG: linux_aarch64_netmoducx-1.16.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_netmoducx-1.17.0:
+        CONFIG: linux_aarch64_netmoducx-1.17.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_ppc64le_netmodofi-1.15.2:
         CONFIG: linux_ppc64le_netmodofi-1.15.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_ppc64le_netmodofi-1.17.0:
+        CONFIG: linux_ppc64le_netmodofi-1.17.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_ppc64le_netmodofi-1.22.0:
         CONFIG: linux_ppc64le_netmodofi-1.22.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_ppc64le_netmoducx:
-        CONFIG: linux_ppc64le_netmoducx
+      linux_ppc64le_netmoducx-1.15.0:
+        CONFIG: linux_ppc64le_netmoducx-1.15.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_ppc64le_netmoducx-1.16.0:
+        CONFIG: linux_ppc64le_netmoducx-1.16.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_ppc64le_netmoducx-1.17.0:
+        CONFIG: linux_ppc64le_netmoducx-1.17.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
   timeoutInMinutes: 360
