@@ -1,3 +1,4 @@
 netmod:
-  - ucx
-  - ofi
+  - ucx-1.17.0
+  - ofi-1.22.0
+  - ofi-1.19.1
