@@ -22,7 +22,7 @@ or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABL
 MVAPICH supports two high-level network modules (netmods), namely UCX and OFI:
 for the UCX netmod use `conda install conda-forge::mvapich=*=ucx*`, and
 for the OFI netmod `conda install conda-forge::mvapich=*=ofi*`.
-As an *experiment* it is also possible to select a particular version of LibFabric,
+As an *experiment* it is also possible to select a particular version of LibFabric or UCX,
 for instance 1.15.2 with `conda install conda-forge::mvapich=*=ofi_1.15.2*`.
 
 These commands will install the MVAPICH package configured with the desired netmod.
@@ -51,17 +51,10 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_netmodofi-1.15.2</td>
+              <td>linux_64_netmodofi-1.19.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmodofi-1.15.2" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_netmodofi-1.17.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmodofi-1.17.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmodofi-1.19.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -72,20 +65,6 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_netmoducx-1.15.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmoducx-1.15.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_netmoducx-1.16.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmoducx-1.16.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>linux_64_netmoducx-1.17.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
@@ -93,17 +72,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_netmodofi-1.15.2</td>
+              <td>linux_aarch64_netmodofi-1.19.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmodofi-1.15.2" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_netmodofi-1.17.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmodofi-1.17.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmodofi-1.19.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -114,20 +86,6 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_netmoducx-1.15.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmoducx-1.15.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_netmoducx-1.16.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmoducx-1.16.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>linux_aarch64_netmoducx-1.17.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
@@ -135,17 +93,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_netmodofi-1.15.2</td>
+              <td>linux_ppc64le_netmodofi-1.19.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmodofi-1.15.2" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_netmodofi-1.17.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmodofi-1.17.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmodofi-1.19.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -153,20 +104,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmodofi-1.22.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_netmoducx-1.15.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx-1.15.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_netmoducx-1.16.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx-1.16.0" alt="variant">
                 </a>
               </td>
             </tr><tr>
