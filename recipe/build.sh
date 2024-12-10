@@ -76,10 +76,7 @@ export LIBRARY_PATH="$PREFIX/lib"
             --enable-fortran=all \
             --enable-romio \
             --enable-nemesis-shm-collectives \
-            --disable-gl \
-            --disable-nvml \
-            --disable-cl \
-            --disable-opencl \
+            --disable-cuda \
             --disable-dependency-tracking \
             --with-sysroot \
             --enable-static=no
