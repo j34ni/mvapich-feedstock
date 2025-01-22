@@ -65,10 +65,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_netmoducx-1.17.0</td>
+              <td>linux_64_netmoducx-1.18.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmoducx-1.17.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_netmoducx-1.18.0" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -86,10 +86,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_netmoducx-1.17.0</td>
+              <td>linux_aarch64_netmoducx-1.18.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmoducx-1.17.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_netmoducx-1.18.0" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -107,10 +107,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_netmoducx-1.17.0</td>
+              <td>linux_ppc64le_netmoducx-1.18.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23590&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx-1.17.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mvapich-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_netmoducx-1.18.0" alt="variant">
                 </a>
               </td>
             </tr>

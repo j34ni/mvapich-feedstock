@@ -26,6 +26,8 @@ libhwloc:
 - 2.11.2
 netmod:
 - ofi-1.22.0
+rdma_core:
+- '55'
 target_platform:
 - linux-ppc64le
 ucx:
