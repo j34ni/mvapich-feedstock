@@ -1,5 +1,5 @@
-{% set version = "3.0" %}
-{% set build = 8 %}
+{% set version = "4.0" %}
+{% set build = 0 %}
 {% set netmod = netmod or 'default' %}
 {% set netmod_variant = netmod.split('-')[0] %}
 {% set netmod_version = netmod.split('-')[1] if '-' in netmod else '' %}
@@ -10,11 +10,11 @@ package:
 
 source:
   url: https://mvapich.cse.ohio-state.edu/download/mvapich/mv2/mvapich-{{ version }}.tar.gz
-  sha256: ee076c4e672d18d6bf8dd2250e4a91fa96aac1db2c788e4572b5513d86936efb
+  sha256: c532f7bdd5cca71f78c12e0885c492f6e276e283711806c84d0b0f80bb3e3b74
 
 build:
   number: {{ build }}
-  string: "{{ netmod_variant }}_{{ netmod_version|replace('-','_') }}_h{{ PKG_HASH }}_{{ build }}"
+  string: {{ netmod_variant }}_{{ netmod_version|replace('-','_') }}_h{{ PKG_HASH }}_{{ build }}
   skip: true  # [win or osx]
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
@@ -78,7 +78,7 @@ about:
     Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64` for `linux-64`, or
     their equivalent for other platforms) have to be added manually since they are not automatically installed in the Conda
     environment as dependencies.
-    
+
 extra:
   recipe-maintainers:
     - j34ni
