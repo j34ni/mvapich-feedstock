@@ -35,6 +35,7 @@ requirements:
     - ucx >=1.12.0
     {% endif %}
   run:
+    - libfabric {{ netmod_version }}
     - rdma-core
     - mpi 1.0.* mvapich
 
