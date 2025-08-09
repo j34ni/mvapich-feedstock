@@ -25,7 +25,7 @@ fortran_compiler_version:
 libhwloc:
 - 2.11.2
 netmod:
-- ucx-1.18.0
+- ofi-2.2.0
 rdma_core:
 - '58'
 target_platform:
