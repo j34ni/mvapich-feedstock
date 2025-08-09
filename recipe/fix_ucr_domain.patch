@@ -1,0 +1,19 @@
+--- ./modules/libfabric/prov/ucr/src/ucr_domain.c	2024-10-18 21:08:33.000000000 +0000
++++ ./modules/libfabric/prov/ucr/src/ucr_domain.c_remodified	2025-08-09 19:15:08.829419227 +0000
+@@ -613,10 +613,12 @@
+         }
+     } else {
+         ucr_mr->hmem_flags = OFI_HMEM_DATA_DEV_REG_HANDLE;
+-        cuda_gdrcopy_get_cache_gdrhandle(
+-            &ucr_mr->hmem_handle,
+-            (uint64_t *)(((struct mverbs_mem_desc *)ucr_mr->msg_mr->mem_desc)
+-                             ->cache_gdrcopy_handle));
++        uint64_t handle;
++        ret = cuda_gdrcopy_get_cache_gdrhandle(&handle,
++                                               (uint64_t)((struct mverbs_mem_desc *)ucr_mr->msg_mr->mem_desc)->cache_gdrcopy_handle);
++        if (ret)
++            goto map_err;
++        ucr_mr->hmem_handle = (void *)(uintptr_t)handle;
+     }
+ 
+     if (ucr_domain->util_domain.info_domain_caps & FI_ATOMIC) {
