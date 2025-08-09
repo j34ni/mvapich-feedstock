@@ -1,5 +1,5 @@
 {% set version = "4.0" %}
-{% set build = 0 %}
+{% set build = 1 %}
 {% set netmod = netmod or 'default' %}
 {% set netmod_variant = netmod.split('-')[0] %}
 {% set netmod_version = netmod.split('-')[1] if '-' in netmod else '' %}
