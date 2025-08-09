@@ -8,36 +8,24 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_netmodofi-1.19.1:
-        CONFIG: linux_64_netmodofi-1.19.1
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_netmodofi-1.22.0:
-        CONFIG: linux_64_netmodofi-1.22.0
+      linux_64_netmodofi-1.15.2:
+        CONFIG: linux_64_netmodofi-1.15.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_64_netmoducx-1.18.0:
         CONFIG: linux_64_netmoducx-1.18.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_netmodofi-1.19.1:
-        CONFIG: linux_aarch64_netmodofi-1.19.1
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_netmodofi-1.22.0:
-        CONFIG: linux_aarch64_netmodofi-1.22.0
+      linux_aarch64_netmodofi-1.15.2:
+        CONFIG: linux_aarch64_netmodofi-1.15.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_aarch64_netmoducx-1.18.0:
         CONFIG: linux_aarch64_netmoducx-1.18.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_ppc64le_netmodofi-1.19.1:
-        CONFIG: linux_ppc64le_netmodofi-1.19.1
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_ppc64le_netmodofi-1.22.0:
-        CONFIG: linux_ppc64le_netmodofi-1.22.0
+      linux_ppc64le_netmodofi-1.15.2:
+        CONFIG: linux_ppc64le_netmodofi-1.15.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_ppc64le_netmoducx-1.18.0:
