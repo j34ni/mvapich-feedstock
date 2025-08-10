@@ -34,13 +34,13 @@ requirements:
     {% if netmod_variant == "ofi" and netmod_version %}
     - libfabric {{ netmod_version }}
     {% elif netmod_variant == "ucx" %}
-    - ucx >=1.12.0
+    - ucx {{ netmod_version }}
     {% endif %}
   run:
     {% if netmod_variant == "ofi" and netmod_version %}
     - libfabric {{ netmod_version }}
     {% elif netmod_variant == "ucx" %}
-    - ucx >=1.12.0
+    - ucx {{ netmod_version }}
     {% endif %}
     - rdma-core
     - mpi 1.0.* mvapich
