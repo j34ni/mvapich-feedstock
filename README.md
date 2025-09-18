@@ -9,23 +9,11 @@ Package license: BSD-3-Clause
 
 Summary: MVAPICH, a high-performance MPI library by The Ohio State University.
 
-MVAPICH is a high-performance implementation of the MPI (Message Passing Interface) standard.
-It provides enhancements including optimization for different networking technologies.
+MVAPICH is a high-performance implementation of the MPI (Message Passing Interface) standard
+with support for **both** Unified Communication X (UCX) and Open Fabric Interfaces (OFI).
 
-
-The default value for `MV2_ENABLE_AFFINITY` is typically `1` (enabled). This setting binds MPI processes
-to specific CPU cores to improve performance due to cache locality and reduced context switching.
-In some environments, particularly those using the Slurm job scheduler, this may degrade performance
-or lead to unexpected behavior, and hence it may be beneficial to set `MV2_ENABLE_AFFINITY=0`.
-
-
-MVAPICH supports two high-level network modules (netmods), namely UCX and OFI:
-for the UCX netmod use `conda install conda-forge::mvapich=*=ucx*`, and
-for the OFI netmod `conda install conda-forge::mvapich=*=ofi*`.
-As an *experiment* it is also possible to select a particular version of LibFabric or UCX,
-for instance 1.15.2 with `conda install conda-forge::mvapich=*=ofi_1.15.2*`.
-
-These commands will install the MVAPICH package configured with the desired netmod.
+In case the actual *netmod* is not correctly recognized at run time, activate it using either
+`MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
 
 
 Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64` for `linux-64`, or
