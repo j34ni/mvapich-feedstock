@@ -22,7 +22,7 @@ source:
 build:
   number: {{ build }}
   string: shs_h{{ PKG_HASH }}_{{ build }}
-  skip: true  # [win or osx]
+  skip: true  # [win or osx or linux_ppc64le]
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
 
@@ -34,7 +34,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
-#   - {{ stdlib("c") }}
+    - {{ stdlib("c") }}
     - libtool
     - make
     - pkg-config
