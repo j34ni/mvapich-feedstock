@@ -16,9 +16,9 @@ source:
 #   sha256: ddbf61538d46ee7b5940a9206321a4361b60fcb774b9d2def6f844607c3117a5  # 2.3.0
     sha256: 734aa46fc1a5c69c59514aade3e8f17037506fbb08013f4be63d669e546570b0  # 2.2.0
     folder: shs-libfabric
-#   patches:
-#     - fix_reallocarray.patch  # for 2.3.0
-#     - define-map-huge-shift.patch  # for 2.3.0
+    patches:
+      - fix_reallocarray.patch 
+      - define-map-huge-shift.patch
 
 
 build:
