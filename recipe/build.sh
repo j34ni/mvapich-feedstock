@@ -23,19 +23,47 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   fi
 fi
 
-# Set minimal necessary flags for this build process
 export CPPFLAGS="-I$PREFIX/include"
 export CFLAGS="-I$PREFIX/include"
 export CXXFLAGS="-I$PREFIX/include"
 export FFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
 export FCFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
-export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
+export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 
 export LIBRARY_PATH="$PREFIX/lib"
 
+cd shs-libfabric
+
+autoreconf -ivf
+
+./configure --prefix=${PREFIX} \
+            --enable-cxi \
+            --with-cassini-headers=${PREFIX} \
+            --with-cxi-uapi-headers=${PREFIX} \
+            --with-curl=${PREFIX} \
+            --with-json-c=${PREFIX} \
+            --with-libnl=${PREFIX} \
+            --docdir=$PWD/noinst/doc \
+            --mandir=$PWD/noinst/man \
+            --disable-lpp \
+            --disable-psm3 \
+            --disable-opx \
+            --disable-efa \
+            --disable-static
+
+make -j${CPU_COUNT} src/libfabric.la
+make -j${CPU_COUNT} util/fi_info util/fi_pingpong util/fi_strerror util/fi_mon_sampler
+
+make install-exec install-data
+
+cd ../mvapich
+
+export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LIBS="-lfabric $LIBS"
+
 ./configure --prefix=$PREFIX \
-	    --with-device=ch4:ucx,ofi \
-	    --with-ucx=$PREFIX \
+            --with-device=ch4:ucx,ofi \
+            --with-ucx=$PREFIX \
             --with-libfabric=$PREFIX \
             --with-libfabric-include=$PREFIX/include \
             --with-libfabric-lib=$PREFIX/lib \
