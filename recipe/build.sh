@@ -4,23 +4,9 @@ set -ex
 
 unset F77 F90
 
-export CC=$(basename "$CC")
-export CXX=$(basename "$CXX")
-export FC=$(basename "$FC")
-
-if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
-  if [[ "$target_platform" == "linux-aarch64" || "$target_platform" == "linux-ppc64le" ]]; then
-    export CROSS_F77_SIZEOF_INTEGER=4
-    export CROSS_F77_SIZEOF_REAL=4
-    export CROSS_F77_SIZEOF_DOUBLE_PRECISION=8
-    export CROSS_F77_TRUE_VALUE=1
-    export CROSS_F77_FALSE_VALUE=0
-    export CROSS_F90_ADDRESS_KIND=8
-    export CROSS_F90_OFFSET_KIND=8
-    export CROSS_F90_INTEGER_KIND=4
-    export CROSS_F90_REAL_MODEL=" 6 , 37"
-    export CROSS_F90_DOUBLE_MODEL=" 15 , 307"
-  fi
+export CUDA_HOME="${PREFIX}/targets/x86_64-linux"
+if [[ "$target_platform" == "linux-aarch64" ]]; then
+  export CUDA_HOME="${PREFIX}/targets/sbsa-linux"
 fi
 
 export CPPFLAGS="-I$PREFIX/include"
@@ -30,15 +16,19 @@ export FFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
 export FCFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
 export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 
-export LIBRARY_PATH="$PREFIX/lib"
+export PATH="${PREFIX}/bin:${CUDA_HOME}/bin:${CUDA_HOME}/nvvm/bin:${PATH}"
+export LIBRARY_PATH="${CUDA_HOME}/lib/stubs:${CUDA_HOME}/lib:$PREFIX/lib:${LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${CUDA_HOME}/lib/stubs:${CUDA_HOME}/lib:$LD_LIBRARY_PATH"
 
 cd shs-libfabric
 
 autoreconf -ivf
 
 ./configure --prefix=${PREFIX} \
+            --enable-cuda-dlopen \
             --enable-cxi \
             --with-cassini-headers=${PREFIX} \
+            --with-cuda=${CUDA_HOME} \
             --with-cxi-uapi-headers=${PREFIX} \
             --with-curl=${PREFIX} \
             --with-json-c=${PREFIX} \
@@ -61,18 +51,28 @@ cd ../mvapich
 export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
 export LIBS="-lfabric $LIBS"
 
+export CC=$(basename "$CC")
+export CXX=$(basename "$CXX")
+export FC=$(basename "$FC")
+
 ./configure --prefix=$PREFIX \
+            --enable-fortran=all \
+            --enable-nemesis-shm-collectives \
+            --enable-romio \
+            --enable-static=no \
+            --with-cuda=${CUDA_HOME} \
+            --with-cuda-sm=90 \
             --with-device=ch4:ucx,ofi \
-            --with-ucx=$PREFIX \
             --with-libfabric=$PREFIX \
             --with-libfabric-include=$PREFIX/include \
             --with-libfabric-lib=$PREFIX/lib \
-            --enable-fortran=all \
-            --enable-romio \
-            --enable-nemesis-shm-collectives \
-            --disable-dependency-tracking \
             --with-sysroot \
-            --enable-static=no
+            --with-ucx=$PREFIX \
+            --disable-dependency-tracking \
+            --disable-option-checking \
+            --with-wrapper-dl-type=none \
+            --with-dl-type=none
 
 make -j"${CPU_COUNT}"
+
 make install
