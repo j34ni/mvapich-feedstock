@@ -1,0 +1,14 @@
+--- a/modules/yaksa/src/backend/cuda/hooks/yaksuri_cuda_init_hooks.c
++++ b/modules/yaksa/src/backend/cuda/hooks/yaksuri_cuda_init_hooks.c
+@@ -183,7 +183,10 @@
+             cerr = cudaGetDeviceProperties(&prop, i);
+             YAKSURI_CUDAI_CUDA_ERR_CHKANDJUMP(cerr, rc, fn_fail);
+ 
+-            if (prop.computeMode != cudaComputeModeDefault) {
++            int computeMode;
++            cerr = cudaDeviceGetAttribute(&computeMode, cudaDevAttrComputeMode, i);
++            YAKSURI_CUDAI_CUDA_ERR_CHKANDJUMP(cerr, rc, fn_fail);
++            if (computeMode != cudaComputeModeDefault) {
+                 excl = true;
+                 break;
+             }
