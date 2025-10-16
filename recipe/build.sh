@@ -36,6 +36,7 @@ autoreconf -ivf
 ./configure --prefix=${PREFIX} \
             --enable-cuda-dlopen \
             --enable-cxi \
+	    --enable-gdrcopy-dlopen \
             --with-cassini-headers=${PREFIX} \
             --with-cuda=${CUDA_HOME} \
             --with-cxi-uapi-headers=${PREFIX} \
