@@ -4,6 +4,10 @@ set -ex
 
 unset F77 F90
 
+export CC=$(basename "$CC")
+export CXX=$(basename "$CXX")
+export FC=$(basename "$FC")
+
 export CUDA_HOME="${PREFIX}/targets/x86_64-linux"
 if [[ "$target_platform" == "linux-aarch64" ]]; then
   export CUDA_HOME="${PREFIX}/targets/sbsa-linux"
@@ -14,13 +18,18 @@ export CFLAGS="-I$PREFIX/include"
 export CXXFLAGS="-I$PREFIX/include"
 export FFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
 export FCFLAGS="-I$PREFIX/include -fallow-argument-mismatch"
-export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+export LDFLAGS="-L$PREFIX/lib -L${CUDA_HOME}/lib -L${CUDA_HOME}/lib/stubs -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib:${CUDA_HOME}/lib"
 
-export PATH="${PREFIX}/bin:${CUDA_HOME}/bin:${CUDA_HOME}/nvvm/bin:${PATH}"
-export LIBRARY_PATH="${CUDA_HOME}/lib/stubs:${CUDA_HOME}/lib:$PREFIX/lib:${LIBRARY_PATH}"
-export LD_LIBRARY_PATH="${CUDA_HOME}/lib/stubs:${CUDA_HOME}/lib:$LD_LIBRARY_PATH"
+export PATH="${PREFIX}/bin:${CUDA_HOME}/bin:${CUDA_HOME}/nvvm/bin:${PATH}" 
+export LIBRARY_PATH="${CUDA_HOME}/lib:$PREFIX/lib:${LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${CUDA_HOME}/lib:$LD_LIBRARY_PATH"
 
-cd shs-libfabric
+cd gdrcopy
+
+make prefix=${PREFIX} lib lib_install
+ls -la ${PREFIX}/lib/libgdrapi*
+
+cd ../shs-libfabric
 
 autoreconf -ivf
 
@@ -31,6 +40,7 @@ autoreconf -ivf
             --with-cuda=${CUDA_HOME} \
             --with-cxi-uapi-headers=${PREFIX} \
             --with-curl=${PREFIX} \
+	    --with-gdrcopy=${PREFIX} \
             --with-json-c=${PREFIX} \
             --with-libnl=${PREFIX} \
             --docdir=$PWD/noinst/doc \
@@ -49,11 +59,7 @@ make install-exec install-data
 cd ../mvapich
 
 export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LIBS="-lfabric $LIBS"
-
-export CC=$(basename "$CC")
-export CXX=$(basename "$CXX")
-export FC=$(basename "$FC")
+export LIBS="-lgdrapi -lfabric $LIBS"
 
 ./configure --prefix=$PREFIX \
             --enable-fortran=all \
