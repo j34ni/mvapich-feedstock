@@ -29,6 +29,8 @@ build:
   number: {{ build }}
   string: shs_cuda_h{{ PKG_HASH }}_{{ build }}
   skip: true  # [win or osx] 
+  script_env:
+    - LIBS=""
   run_exports:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
     - {{ pin_compatible('cuda-version', min_pin='x', max_pin='x') }}  
