@@ -26,6 +26,7 @@ export LD_LIBRARY_PATH="${CUDA_HOME}/lib:$LD_LIBRARY_PATH"
 
 cd gdrcopy
 
+sed -i "s/gcc/${CC}/g" config_arch
 make prefix=${PREFIX} lib lib_install
 ls -la ${PREFIX}/lib/libgdrapi*
 
