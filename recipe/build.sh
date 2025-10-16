@@ -73,7 +73,6 @@ export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
             --with-libfabric=$PREFIX \
             --with-libfabric-include=$PREFIX/include \
             --with-libfabric-lib=$PREFIX/lib \
-            --with-sysroot \
             --with-ucx=$PREFIX \
             --disable-dependency-tracking \
             --disable-option-checking \
