@@ -60,7 +60,7 @@ make install-exec install-data
 cd ../mvapich
 
 export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LIBS="-lgdrapi -lfabric $LIBS"
+export LIBS="-lfabric $LIBS"
 
 ./configure --prefix=$PREFIX \
             --enable-fortran=all \
