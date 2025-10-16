@@ -35,6 +35,8 @@ build:
     - {{ pin_subpackage('mvapich', max_pin='x.y') }}
     - {{ pin_compatible('cuda-version', min_pin='x', max_pin='x') }}  
   missing_dso_whitelist:
+    - $RPATH/libcuda.so.*
+    - $RPATH/libcuda.so.1
     - libcuda.so.*
     - libcuda.so.1
   ignore_run_exports:
