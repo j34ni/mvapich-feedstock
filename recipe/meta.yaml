@@ -36,6 +36,7 @@ build:
     - {{ pin_compatible('cuda-version', min_pin='x', max_pin='x') }}  
   missing_dso_whitelist:
     - libcuda.so.*
+    - libcudart.so.*
   ignore_run_exports:
     - cuda-cudart-dev
 
