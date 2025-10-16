@@ -36,7 +36,7 @@ build:
     - {{ pin_compatible('cuda-version', min_pin='x', max_pin='x') }}  
   missing_dso_whitelist:
     - libcuda.so.*
-    - libcudart.so.*
+    - libcuda.so.1
   ignore_run_exports:
     - cuda-cudart-dev
 
@@ -70,9 +70,11 @@ requirements:
     - shs-libcxi
     - ucx
   run:
-    - cuda-cudart-dev {{ cuda_version }}.*
     - cuda-crt-dev_linux-64 {{ cuda_version }}.*  # [target_platform == 'linux-64']
     - cuda-crt-dev_linux-aarch64 {{ cuda_version }}.*  # [target_platform == 'linux-aarch64']
+    - cuda-cudart_linux-64 {{ cuda_version }}.*  # [target_platform == 'linux-64']
+    - cuda-cudart_linux-aarch64 {{ cuda_version }}.*  # [target_platform == 'linux-aarch64']
+    - cuda-cudart-dev {{ cuda_version }}.*
     - cuda-driver-dev {{ cuda_version }}.*
     - json-c
     - libcurl
