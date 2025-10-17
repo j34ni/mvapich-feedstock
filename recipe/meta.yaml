@@ -47,9 +47,9 @@ requirements:
     - autoconf
     - automake
     - bison
-    - {{ compiler('c') }} >=6,<14
-    - {{ compiler('cxx') }} >=6,<14
-    - {{ compiler('fortran') }} >=6,<14
+    - {{ compiler('c') }} 
+    - {{ compiler('cxx') }} 
+    - {{ compiler('fortran') }} 
     - {{ stdlib("c") }}
     - libtool
     - make
