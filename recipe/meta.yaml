@@ -1,6 +1,6 @@
 {% set mvapich_version = "4.1" %}
 {% set shs_libfabric_version = "2.2.0" %}
-{% set cuda_version = "12.5" %}
+{% set cuda_version = "12.6" %}
 {% set gdrcopy_version = "2.5.1" %}
 {% set build = 2 %}
 
@@ -47,9 +47,9 @@ requirements:
     - autoconf
     - automake
     - bison
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}
+    - {{ compiler('c') }} >=6,<14
+    - {{ compiler('cxx') }} >=6,<14
+    - {{ compiler('fortran') }} >=6,<14
     - {{ stdlib("c") }}
     - libtool
     - make
