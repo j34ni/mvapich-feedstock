@@ -78,6 +78,7 @@ requirements:
     - cuda-cudart_linux-aarch64 {{ cuda_version }}.*  # [target_platform == 'linux-aarch64']
     - cuda-cudart-dev {{ cuda_version }}.*
     - cuda-driver-dev {{ cuda_version }}.*
+    - cuda-nvcc {{ cuda_version }}.*
     - json-c
     - libcurl
     - libhwloc
@@ -111,7 +112,7 @@ about:
     with support for **both** Unified Communication X (UCX) and Open Fabric Interfaces (OFI).
 
     The MVAPICH-SHS variant comes with the CXI provider support for Slingshot Host Systems and
-    the `_cuda` version was build with CUDA 12.8 support.
+    the `_cuda` version was build with CUDA 12 support.
 
     In case the actual *netmod* is not correctly recognized at run time, activate it using either
     `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
