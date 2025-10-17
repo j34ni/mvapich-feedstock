@@ -1,3 +1,8 @@
-netmod:
-# - ucx-1.19.0
-  - ofi-1.22.0
+c_compiler_version:
+  - 13 
+
+cxx_compiler_version:
+  - 13 
+
+fortran_compiler_version:
+  - 13 

@@ -5,14 +5,15 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mvapich-feedsto
 
 Home: https://mvapich.cse.ohio-state.edu/
 
-Package license: BSD-3-Clause AND (BSD-2-Clause OR GPL-2.0-only)
+Package license: BSD-3-Clause AND MIT AND (BSD-2-Clause OR GPL-2.0-only)
 
 Summary: MVAPICH, a high-performance MPI library by The Ohio State University.
 
 MVAPICH is a high-performance implementation of the MPI (Message Passing Interface) standard
 with support for **both** Unified Communication X (UCX) and Open Fabric Interfaces (OFI).
 
-The MVAPICH-SHS variant comes with the CXI provider support for Slingshot Host Systems.
+The MVAPICH-SHS variant comes with the CXI provider support for Slingshot Host Systems and
+the `_cuda` version was build with CUDA 12 support.
 
 In case the actual *netmod* is not correctly recognized at run time, activate it using either
 `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
