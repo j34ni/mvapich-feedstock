@@ -2,7 +2,7 @@
 {% set shs_libfabric_version = "2.2.0" %}
 {% set cuda_version = "12.6" %}
 {% set gdrcopy_version = "2.5.1" %}
-{% set build = 2 %}
+{% set build = 4 %}
 
 package:
   name: mvapich
@@ -92,11 +92,11 @@ test:
   requires:
     - {{ compiler('c') }}
   commands:
-    - test -f $PREFIX/lib/libmpi.so
-    - test -f $PREFIX/lib/libmpifort.so
-    - test -f $PREFIX/bin/mpicc
-    - test -f $PREFIX/bin/mpifort
-    - test -f $PREFIX/bin/mpiexec
+    - test -f $CONDA_PREFIX/lib/libmpi.so
+    - test -f $CONDA_PREFIX/lib/libmpifort.so
+    - test -f $CONDA_PREFIX/bin/mpicc
+    - test -f $CONDA_PREFIX/bin/mpifort
+    - test -f $CONDA_PREFIX/bin/mpiexec
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
