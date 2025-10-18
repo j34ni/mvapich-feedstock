@@ -112,15 +112,10 @@ about:
     with support for **both** Unified Communication X (UCX) and Open Fabric Interfaces (OFI).
 
     The MVAPICH-SHS variant comes with the CXI provider support for Slingshot Host Systems and
-    the `_cuda` version was build with CUDA 12 support.
+    the `_cuda` version was build with CUDA 12 support (use `MPIR_CVAR_ENABLE_GPU=0` to *disable* it).
 
     In case the actual *netmod* is not correctly recognized at run time, activate it using either
     `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
-
-    ### About the Compilers
-    Note that the actual GNU compilers (i.e., `gcc_linux-64`, `gfortran_linux-64` and `gxx_linux-64` for `linux-64`, or
-    their equivalent for other platforms) have to be added manually since they are not automatically installed in the Conda
-    environment as dependencies.
 
 extra:
   recipe-maintainers:
