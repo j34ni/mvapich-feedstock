@@ -92,11 +92,11 @@ test:
   requires:
     - {{ compiler('c') }}
   commands:
-    - test -f $PREFIX/lib/libmpi.so
-    - test -f $PREFIX/lib/libmpifort.so
-    - test -f $PREFIX/bin/mpicc
-    - test -f $PREFIX/bin/mpifort
-    - test -f $PREFIX/bin/mpiexec
+    - test -f $CONDA_PREFIX/lib/libmpi.so
+    - test -f $CONDA_PREFIX/lib/libmpifort.so
+    - test -f $CONDA_PREFIX/bin/mpicc
+    - test -f $CONDA_PREFIX/bin/mpifort
+    - test -f $CONDA_PREFIX/bin/mpiexec
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
