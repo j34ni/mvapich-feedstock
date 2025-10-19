@@ -52,12 +52,12 @@ autoreconf -ivf
 ./configure --prefix=${PREFIX} \
             --enable-cuda-dlopen \
             --enable-cxi \
-	    --enable-gdrcopy-dlopen \
+	        --enable-gdrcopy-dlopen \
             --with-cassini-headers=${PREFIX} \
             --with-cuda=${CUDA_HOME} \
             --with-cxi-uapi-headers=${PREFIX} \
             --with-curl=${PREFIX} \
-	    --with-gdrcopy=${PREFIX} \
+	        --with-gdrcopy=${PREFIX} \
             --with-json-c=${PREFIX} \
             --with-libnl=${PREFIX} \
             --docdir=$PWD/noinst/doc \
