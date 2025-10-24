@@ -52,12 +52,12 @@ autoreconf -ivf
 ./configure --prefix=${PREFIX} \
             --enable-cuda-dlopen \
             --enable-cxi \
-	        --enable-gdrcopy-dlopen \
+            --enable-gdrcopy-dlopen \
             --with-cassini-headers=${PREFIX} \
             --with-cuda=${CUDA_HOME} \
             --with-cxi-uapi-headers=${PREFIX} \
             --with-curl=${PREFIX} \
-	        --with-gdrcopy=${PREFIX} \
+            --with-gdrcopy=${PREFIX} \
             --with-json-c=${PREFIX} \
             --with-libnl=${PREFIX} \
             --docdir=$PWD/noinst/doc \
@@ -97,3 +97,9 @@ export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
 make -j"${CPU_COUNT}"
 
 make install
+
+for CHANGE in "activate" "deactivate"
+  do
+    mkdir -p "${PREFIX}/etc/conda/${CHANGE}.d"
+    cp "${RECIPE_DIR}/${CHANGE}.sh" "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.sh"
+  done
