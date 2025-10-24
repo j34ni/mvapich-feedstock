@@ -2,7 +2,7 @@
 {% set shs_libfabric_version = "2.2.0" %}
 {% set cuda_version = "12.6" %}
 {% set gdrcopy_version = "2.5.1" %}
-{% set build = 4 %}
+{% set build = 5 %}
 
 package:
   name: mvapich
@@ -97,6 +97,9 @@ test:
     - test -f $CONDA_PREFIX/bin/mpicc
     - test -f $CONDA_PREFIX/bin/mpifort
     - test -f $CONDA_PREFIX/bin/mpiexec
+    - test -n "$CUDA_HOME"
+    - test "$CUDA_HOME" = "$CONDA_PREFIX/targets/x86_64-linux"  # [target_platform == 'linux-64']
+    - test "$CUDA_HOME" = "$CONDA_PREFIX/targets/sbsa-linux"  # [target_platform == 'linux-aarch64']
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
