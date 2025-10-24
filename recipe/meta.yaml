@@ -98,8 +98,8 @@ test:
     - test -f $CONDA_PREFIX/bin/mpifort
     - test -f $CONDA_PREFIX/bin/mpiexec
     - test -n "$CUDA_HOME"
-    - test "$CUDA_HOME" = "$CONDA_PREFIX/targets/x86_64-linux"  # [target_platform == 'linux-64']
-    - test "$CUDA_HOME" = "$CONDA_PREFIX/targets/sbsa-linux"  # [target_platform == 'linux-aarch64']
+    - if [[ $(uname -m) == "x86_64" ]]; then test "$CUDA_HOME" = "$CONDA_PREFIX/targets/x86_64-linux"; fi  # [target_platform == 'linux-64']
+    - if [[ $(uname -m) == "aarch64" ]]; then test "$CUDA_HOME" = "$CONDA_PREFIX/targets/sbsa-linux"; fi  # [target_platform == 'linux-aarch64']
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
