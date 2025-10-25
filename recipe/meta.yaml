@@ -2,7 +2,7 @@
 {% set shs_libfabric_version = "2.2.0" %}
 {% set cuda_version = "12.6" %}
 {% set gdrcopy_version = "2.5.1" %}
-{% set build = 5 %}
+{% set build = 6 %}
 
 package:
   name: mvapich
@@ -92,11 +92,11 @@ test:
   requires:
     - {{ compiler('c') }}
   commands:
-    - test -f $CONDA_PREFIX/lib/libmpi.so
-    - test -f $CONDA_PREFIX/lib/libmpifort.so
-    - test -f $CONDA_PREFIX/bin/mpicc
-    - test -f $CONDA_PREFIX/bin/mpifort
-    - test -f $CONDA_PREFIX/bin/mpiexec
+    - test -f $PREFIX/lib/libmpi.so
+    - test -f $PREFIX/lib/libmpifort.so
+    - test -f $PREFIX/bin/mpicc
+    - test -f $PREFIX/bin/mpifort
+    - test -f $PREFIX/bin/mpiexec
     - test -n "$CUDA_HOME"
     - if [[ $(uname -m) == "x86_64" ]]; then test "$CUDA_HOME" = "$CONDA_PREFIX/targets/x86_64-linux"; fi  # [target_platform == 'linux-64']
     - if [[ $(uname -m) == "aarch64" ]]; then test "$CUDA_HOME" = "$CONDA_PREFIX/targets/sbsa-linux"; fi  # [target_platform == 'linux-aarch64']
