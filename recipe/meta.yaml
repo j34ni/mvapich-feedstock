@@ -100,7 +100,7 @@ test:
     - test -f $CONDA_PREFIX/bin/mpifort
     - test -f $CONDA_PREFIX/bin/mpiexec
     - |
-      if [[ $(uname -m) == "x86_64" ]]; then
+      if [[ "${target_platform}" == "linux-64" ]]; then
         export CUDA_HOME="${CONDA_PREFIX}/targets/x86_64-linux"
       else
         export CUDA_HOME="${CONDA_PREFIX}/targets/sbsa-linux"
@@ -129,7 +129,6 @@ about:
 
     In case the actual *netmod* is not correctly recognized at run time, activate it using either
     `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
-    CUDA support auto-configures paths on env activation; build apps with mpicc and set MPIR_CVAR_ENABLE_GPU=1 for GPU ops.
 
 extra:
   recipe-maintainers:
