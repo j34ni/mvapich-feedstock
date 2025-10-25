@@ -2,7 +2,7 @@
 {% set shs_libfabric_version = "2.2.0" %}
 {% set cuda_version = "12.6" %}
 {% set gdrcopy_version = "2.5.1" %}
-{% set build = 6 %}
+{% set build = 7 %}
 
 package:
   name: mvapich
@@ -91,15 +91,25 @@ requirements:
 test:
   requires:
     - {{ compiler('c') }}
+  files:
+    - hello.c
   commands:
-    - test -f $PREFIX/lib/libmpi.so
-    - test -f $PREFIX/lib/libmpifort.so
-    - test -f $PREFIX/bin/mpicc
-    - test -f $PREFIX/bin/mpifort
-    - test -f $PREFIX/bin/mpiexec
-    - test -n "$CUDA_HOME"
-    - test "$CUDA_HOME" = "$PREFIX/targets/x86_64-linux"  # [target_platform == 'linux-64']
-    - test "$CUDA_HOME" = "$PREFIX/targets/sbsa-linux"  # [target_platform == 'linux-aarch64']
+    - test -f $CONDA_PREFIX/lib/libmpi.so
+    - test -f $CONDA_PREFIX/lib/libmpifort.so
+    - test -f $CONDA_PREFIX/bin/mpicc
+    - test -f $CONDA_PREFIX/bin/mpifort
+    - test -f $CONDA_PREFIX/bin/mpiexec
+    - |
+      if [[ "${target_platform}" == "linux-64" ]]; then
+        export CUDA_HOME="${CONDA_PREFIX}/targets/x86_64-linux"
+      else
+        export CUDA_HOME="${CONDA_PREFIX}/targets/sbsa-linux"
+      fi
+      export LD_LIBRARY_PATH="${CUDA_HOME}/lib/stubs:${LD_LIBRARY_PATH}"
+      ln -sf "${CUDA_HOME}/lib/stubs/libcuda.so" "${CUDA_HOME}/lib/stubs/libcuda.so.1"
+      export MPIR_CVAR_ENABLE_GPU=0
+      mpicc -o hello_mpi hello.c
+      mpirun -np 2 ./hello_mpi
 
 about:
   home: https://mvapich.cse.ohio-state.edu/
