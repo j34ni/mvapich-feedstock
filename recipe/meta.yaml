@@ -2,7 +2,7 @@
 {% set shs_libfabric_version = "2.2.0" %}
 {% set cuda_version = "12.6" %}
 {% set gdrcopy_version = "2.5.1" %}
-{% set build = 7 %}
+{% set build = 8 %}
 
 package:
   name: mvapich
@@ -13,7 +13,8 @@ source:
     sha256: c6d5ebb7dabb89d798f27609511735595004da73af28d93ac041bb5290c4cbec
     folder: gdrcopy
   - url: https://mvapich.cse.ohio-state.edu/download/mvapich/mv2/mvapich-{{ mvapich_version }}.tar.gz
-    sha256: a36c459befd5b0d1b66e4a217250d89d9f77b903fcc4a050efddb1c475b8dcab
+#   sha256: a36c459befd5b0d1b66e4a217250d89d9f77b903fcc4a050efddb1c475b8dcab  # 2nd mutation for this version
+    sha256: 25a53d3725b669e2c648158fb7c9fc5b1388953f3a2f949748586c447d0e43ee
     folder: mvapich
     patches:
       - fix_ucr_domain.patch
