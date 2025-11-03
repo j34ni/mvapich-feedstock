@@ -2,6 +2,10 @@
 
 set -ex
 
+export CONDA_BUILD_SYSROOT
+
+export PATH="${BUILD_PREFIX}/bin:$PATH"
+
 unset F77 F90
 
 export CC=$(basename "$CC")
@@ -41,8 +45,8 @@ export LD_LIBRARY_PATH="${CUDA_HOME}/lib:$LD_LIBRARY_PATH"
 
 cd gdrcopy
 
-sed -i "s/gcc/${CC}/g" config_arch
-make prefix=${PREFIX} lib lib_install
+sed -i "s/gcc/gcc/g" config_arch
+make prefix=${PREFIX} SYSROOT=${CONDA_BUILD_SYSROOT} lib lib_install
 ls -la ${PREFIX}/lib/libgdrapi*
 
 cd ../shs-libfabric
@@ -50,6 +54,7 @@ cd ../shs-libfabric
 autoreconf -ivf
 
 ./configure --prefix=${PREFIX} \
+            --with-sysroot=${CONDA_BUILD_SYSROOT} \
             --enable-cuda-dlopen \
             --enable-cxi \
             --enable-gdrcopy-dlopen \
@@ -78,6 +83,7 @@ cd ../mvapich
 export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 ./configure --prefix=$PREFIX \
+            --with-sysroot=${CONDA_BUILD_SYSROOT} \
             --enable-fortran=all \
             --enable-nemesis-shm-collectives \
             --enable-romio \
