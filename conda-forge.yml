@@ -8,3 +8,5 @@ github:
   tooling_branch_name: main
 provider:
   linux_aarch64: default
+azure:
+  store_build_artifacts: true
