@@ -1,3 +1,12 @@
+c_compiler_version:
+  - 13
+
+cxx_compiler_version:
+  - 13
+
+fortran_compiler_version:
+  - 13
+
 c_stdlib:
   - sysroot
 
