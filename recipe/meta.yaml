@@ -1,5 +1,6 @@
 {% set mvapich_version = "4.1" %}
 {% set shs_libfabric_version = "2.2.0" %}
+{% set ucx_version = "1.20.0" %}
 {% set build = 16 %}
 
 package:
@@ -18,6 +19,9 @@ source:
     patches:
       - fix_reallocarray.patch 
       - define_map_huge_shift.patch
+  - url: https://github.com/openucx/ucx/releases/download/v{{ ucx_version }}/ucx-{{ ucx_version }}.tar.gz
+    sha256: 7c8a6093cada179aa1d851b83625e3b25ed5658966e309de5118c27a038c7ef9
+    folder: ucx
 
 build:
   number: {{ build }}
@@ -40,6 +44,7 @@ requirements:
     - patchelf
     - pkg-config
   host:
+    - knem-headers
     - json-c
     - libcurl
     - libhwloc
@@ -48,8 +53,9 @@ requirements:
     - shs-cassini-headers
     - shs-cxi-drivers
     - shs-libcxi
-    - ucx
+    - xpmem
   run:
+    - knem-headers
     - json-c
     - libcurl
     - libhwloc
@@ -57,7 +63,7 @@ requirements:
     - mpi 1.0.* mvapich
     - rdma-core
     - shs-libcxi
-    - ucx
+    - xpmem
 
 test:
   requires:

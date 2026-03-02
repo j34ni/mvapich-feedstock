@@ -43,7 +43,31 @@ fi
 
 export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 
-cd shs-libfabric
+cd ucx
+
+./contrib/configure-release \
+    --build="${BUILD}" \
+    --host="${HOST}" \
+    --prefix="${PREFIX}" \
+    --with-sysroot \
+    --disable-static \
+    --enable-openmp \
+    --enable-cma \
+    --enable-mt \
+    --with-gnu-ld \
+    --with-knem=${PREFIX} \
+    --with-rdmacm=${PREFIX} \
+    --with-verbs=${PREFIX} \
+    --with-xpmem=${PREFIX} \
+    --enable-stats
+
+make -j${CPU_COUNT}
+
+make install
+
+find "${PREFIX}/lib" -name "libu*.la" -delete
+
+cd ../shs-libfabric
 
 autoreconf -ivf
 
