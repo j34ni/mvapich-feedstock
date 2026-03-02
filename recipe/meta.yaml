@@ -1,7 +1,7 @@
 {% set mvapich_version = "4.1" %}
 {% set shs_libfabric_version = "2.2.0" %}
 {% set ucx_version = "1.20.0" %}
-{% set build = 16 %}
+{% set build = 17 %}
 
 package:
   name: mvapich
