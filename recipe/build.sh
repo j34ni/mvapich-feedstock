@@ -110,7 +110,10 @@ unset PKG_CONFIG_PATH
             --disable-dependency-tracking \
             --disable-option-checking \
             --with-wrapper-dl-type=none \
-            --with-dl-type=none
+            --with-dl-type=none \
+	    --with-xpmem=$PREFIX \
+	    -with-xpmem-include=$PREFIX/include \
+	    --with-xpmem-lib=$PREFIX/lib
 
 make -j"${CPU_COUNT}"
 
