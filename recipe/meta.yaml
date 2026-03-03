@@ -93,8 +93,7 @@ about:
 
     The `_shs` variant comes with the CXI provider support for Slingshot Host Systems (use `export FI_PROVIDER=cxi` to *enable* it).
 
-    In case the actual *netmod* is not correctly recognized at run time, activate it using either
-    `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
+    In case the actual *netmod* is not correctly recognized at run time, activate it using either `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
 
 extra:
   recipe-maintainers:
