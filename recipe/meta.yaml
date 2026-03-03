@@ -47,6 +47,7 @@ requirements:
     - knem-headers
     - json-c
     - libcurl
+    - libgomp
     - libhwloc
     - libnl
     - rdma-core 
@@ -55,9 +56,11 @@ requirements:
     - shs-libcxi
     - xpmem
   run:
+    - openmp_mutex
     - knem-headers
     - json-c
     - libcurl
+    - libfuse
     - libhwloc
     - libnl
     - mpi 1.0.* mvapich
@@ -97,4 +100,5 @@ about:
 
 extra:
   recipe-maintainers:
+    
     - j34ni
