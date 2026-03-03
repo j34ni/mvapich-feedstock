@@ -41,9 +41,33 @@ if [[ "$(uname)" == "Linux" ]] || [[ "$(uname)" == "Darwin" ]]; then
   fi
 fi
 
-export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -Wl,--as-needed"
 
-cd shs-libfabric
+cd ucx
+
+./contrib/configure-release \
+    --build="${BUILD}" \
+    --host="${HOST}" \
+    --prefix="${PREFIX}" \
+    --with-sysroot \
+    --disable-static \
+    --enable-openmp \
+    --enable-cma \
+    --enable-mt \
+    --with-gnu-ld \
+    --with-knem=${PREFIX} \
+    --with-rdmacm=${PREFIX} \
+    --with-verbs=${PREFIX} \
+    --with-xpmem=${PREFIX} \
+    --enable-stats
+
+make -j${CPU_COUNT}
+
+make install
+
+find "${PREFIX}/lib" -name "libu*.la" -delete
+
+cd ../shs-libfabric
 
 autoreconf -ivf
 
@@ -86,7 +110,10 @@ unset PKG_CONFIG_PATH
             --disable-dependency-tracking \
             --disable-option-checking \
             --with-wrapper-dl-type=none \
-            --with-dl-type=none
+            --with-dl-type=none \
+	    --with-xpmem=$PREFIX \
+	    --with-xpmem-include=$PREFIX/include \
+	    --with-xpmem-lib=$PREFIX/lib
 
 make -j"${CPU_COUNT}"
 
