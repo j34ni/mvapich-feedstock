@@ -41,7 +41,7 @@ if [[ "$(uname)" == "Linux" ]] || [[ "$(uname)" == "Darwin" ]]; then
   fi
 fi
 
-export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -Wl,--as-needed"
 
 cd ucx
 
