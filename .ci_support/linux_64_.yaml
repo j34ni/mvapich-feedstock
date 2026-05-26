@@ -25,9 +25,9 @@ json_c:
 libcurl:
 - '8'
 libhwloc:
-- 2.12.2
+- 2.13.0
 rdma_core:
-- '61'
+- '63'
 target_platform:
 - linux-64
 zip_keys:
