@@ -1,11 +1,11 @@
 {% set mvapich_version = "4.1" %}
 {% set shs_libfabric_version = "2.2.0" %}
 {% set ucx_version = "1.20.0" %}
-{% set build = 17 %}
+{% set build = 18 %}
 
 package:
   name: mvapich
-  version: {{ mvapich_version }}
+  version: "{{ mvapich_version }}"
 
 source:
   - url: https://mvapich.cse.ohio-state.edu/download/mvapich/mv2/mvapich-{{ mvapich_version }}.tar.gz
