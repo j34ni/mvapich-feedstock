@@ -11,6 +11,7 @@ unset F77 F90
 export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
+export PYTHON=python
 
 if [[ "$target_platform" == "linux-aarch64" ]]; then
   export CROSS_F77_SIZEOF_INTEGER=4
