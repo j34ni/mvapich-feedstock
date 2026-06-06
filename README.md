@@ -10,12 +10,10 @@ Package license: BSD-3-Clause AND (BSD-2-Clause OR GPL-2.0-only)
 Summary: MVAPICH, a high-performance MPI library by The Ohio State University.
 
 MVAPICH is a high-performance implementation of the MPI (Message Passing Interface) standard
-with support for **both** Unified Communication X (UCX) and Open Fabric Interfaces (OFI).
-
-The `_shs` variant comes with the CXI provider support for Slingshot Host Systems (use `export FI_PROVIDER=cxi` to *enable* it).
+with support for **both** Unified Communication X (UCX) and Open Fabric Interfaces (OFI),
+including CXI provider support for Slingshot Host Systems (use `export FI_PROVIDER=cxi` to *enable* it).
 
 In case the actual *netmod* is not correctly recognized at run time, activate it using either `MPICH_CH4_NETMOD=ucx` or `MPICH_CH4_NETMOD=ofi`.
-
 
 Current build status
 ====================
