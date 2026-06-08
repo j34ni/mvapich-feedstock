@@ -4,7 +4,7 @@ context:
   mvapich_version: "4.1"
   shs_libfabric_version: "2.2.0"
   ucx_version: "1.20.0"
-  build: 19
+  build: 20
 
 package:
   name: mvapich
