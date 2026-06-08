@@ -71,7 +71,7 @@ requirements:
     - shs-libcxi
     - xpmem
   run_exports:
-    - ${{ pin_subpackage('mvapich', upper_bound='x.y') }}
+    - ${{ pin_subpackage('mvapich', upper_bound='x.x') }}
 
 tests:
   - script:
